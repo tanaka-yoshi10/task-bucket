@@ -1,14 +1,15 @@
 %h1 Listing tasks
 
-%table
+%table.table
   %thead
     %tr
-      %th Start at
-      %th End at
-      %th Estimate
+      %th 日付
+      %th 開始
+      %th 終了
+      %th 見積
       %th Project
-      %th Title
-      %th Comment
+      %th タスク
+      %th コメント
       %th
       %th
       %th
@@ -16,8 +17,9 @@
   %tbody
     - @tasks.each do |task|
       %tr
-        %td= task.start_at
-        %td= task.end_at
+        %td= l(task.start_at, format: :only_date)
+        %td= l(task.start_at, format: :only_time)
+        %td= l(task.end_at, format: :only_time)
         %td= task.estimate
         %td= task.project
         %td= task.title
