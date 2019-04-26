@@ -3,7 +3,8 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all.order(start_at: :desc)
+    @q = Task.ransack(params.fetch(:q, scheduled_on_eq: Time.current))
+    @tasks = @q.result.order(start_at: :desc)
   end
 
   # GET /tasks/1
@@ -53,6 +54,6 @@ class TasksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def task_params
-      params.require(:task).permit(:start_at, :end_at, :estimate, :project, :title, :comment)
+      params.require(:task).permit(:scheduled_on, :start_at, :end_at, :estimate, :project, :title, :comment)
     end
 end

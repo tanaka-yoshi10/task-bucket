@@ -1,3 +1,11 @@
+= search_form_for @q, url: tasks_path, class: 'form-horizontal' do |f|
+  .input-group.my-3
+    .input-group-prepend
+      %span.input-group-text= icon('fas', 'calendar')
+    = f.search_field :scheduled_on_eq, class: 'form-control'
+    .mx-3
+      = f.submit class: 'btn btn-primary'
+
 %h1 Listing tasks
 
 %table.table
@@ -18,7 +26,7 @@
   %tbody
     - @tasks.each do |task|
       %tr
-        %td= l(task.start_at, format: :only_date)
+        %td= l(task.scheduled_on)
         %td= l(task.start_at, format: :only_time)
         %td= l(task.end_at, format: :only_time)
         %td= task.estimate

@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_132436) do
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.date "scheduled_on", null: false
     t.datetime "start_at"
     t.datetime "end_at"
     t.integer "estimate"
