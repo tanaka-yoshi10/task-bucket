@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2019_04_26_132436) do
   create_table "tasks", force: :cascade do |t|
     t.datetime "start_at"
     t.datetime "end_at"
-    t.integer "estimate", default: 0, null: false
+    t.integer "estimate"
     t.bigint "project_id"
     t.string "title", default: ""
     t.text "comment", default: ""
