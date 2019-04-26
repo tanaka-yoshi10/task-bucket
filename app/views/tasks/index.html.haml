@@ -7,6 +7,7 @@
       %th 開始
       %th 終了
       %th 見積
+      %th 実績
       %th Project
       %th タスク
       %th コメント
@@ -21,6 +22,7 @@
         %td= l(task.start_at, format: :only_time)
         %td= l(task.end_at, format: :only_time)
         %td= task.estimate
+        %td= task.actual.to_i
         %td= task.project
         %td= task.title
         %td= task.comment
