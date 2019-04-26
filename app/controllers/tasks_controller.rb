@@ -5,6 +5,7 @@ class TasksController < ApplicationController
   def index
     @q = Task.ransack(params.fetch(:q, scheduled_on_eq: Time.current))
     @tasks = @q.result.order(start_at: :desc)
+    @new_task = Task.new
   end
 
   # GET /tasks/1
@@ -25,7 +26,7 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
 
     if @task.save
-      redirect_to @task, notice: 'Task was successfully created.'
+      redirect_to tasks_url, notice: 'Task was successfully created.'
     else
       render :new
     end

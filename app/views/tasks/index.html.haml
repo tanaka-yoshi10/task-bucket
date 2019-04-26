@@ -6,6 +6,17 @@
     .mx-3
       = f.submit class: 'btn btn-primary'
 
+= simple_form_for(@new_task) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :title
+    = f.input :estimate
+
+  .form-actions
+    = f.button :submit
+
 %h1 Listing tasks
 
 %table.table
@@ -27,8 +38,8 @@
     - @tasks.each do |task|
       %tr
         %td= l(task.scheduled_on)
-        %td= l(task.start_at, format: :only_time)
-        %td= l(task.end_at, format: :only_time)
+        %td= task.start_at.present? ? l(task.start_at, format: :only_time) : ''
+        %td= task.end_at.present? ? l(task.end_at, format: :only_time) : ''
         %td= task.estimate
         %td= task.actual.to_i
         %td= task.project
