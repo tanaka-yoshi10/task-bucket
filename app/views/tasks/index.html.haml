@@ -32,7 +32,6 @@
       %th コメント
       %th
       %th
-      %th
 
   %tbody
     - @tasks.each do |task|
@@ -49,14 +48,12 @@
           %td
             = f.input :end_at, as: :string, label: false,
               input_html: { value: task.end_at.present? ? l(task.end_at, format: :only_time) : nil, class: 'js-timepicker js-task-input' }
-          %td= f.input :estimate, label: false
+          %td= f.input :estimate, label: false, input_html: { class: 'js-task-input' }
           %td= task.actual.to_i
           %td= task.project
-          %td= task.title
-          %td= task.comment
-          %td
-            = link_to 'Show', task
-          %td= link_to 'Edit', edit_task_path(task)
+          %td= f.input :title, label: false, input_html: { class: 'js-task-input' }
+          %td= f.input :comment, label: false, input_html: { class: 'js-task-input' }
+          %td= link_to icon('fas', 'edit'), edit_task_path(task)
           %td
             = link_to icon('fas', 'trash'), task, :method => :delete, :data => { :confirm => 'Are you sure?' }
             .d-none
