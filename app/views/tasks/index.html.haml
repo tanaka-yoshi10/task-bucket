@@ -42,17 +42,15 @@
               = link_to icon('fas', 'play'), start_task_path(task), method: :put
             - elsif task.end_at.blank?
               = link_to icon('fas', 'stop'), complete_task_path(task), method: :put
-          %td
-            = f.input :start_at, as: :string, label: false,
-              input_html: { value: task.start_at.present? ? l(task.start_at, format: :only_time) : nil, class: 'js-timepicker js-task-input' }
-          %td
-            = f.input :end_at, as: :string, label: false,
-              input_html: { value: task.end_at.present? ? l(task.end_at, format: :only_time) : nil, class: 'js-timepicker js-task-input' }
-          %td= f.input :estimate, label: false, input_html: { class: 'js-task-input' }
+          %td= f.text_field :start_at, value: task.start_at.present? ? l(task.start_at, format: :only_time) : nil,
+            class: 'js-timepicker js-task-input form-control'
+          %td= f.text_field :end_at, value: task.end_at.present? ? l(task.end_at, format: :only_time) : nil,
+            class: 'js-timepicker js-task-input form-control'
+          %td= f.number_field :estimate, class: 'js-task-input form-control'
           %td= task.actual.to_i
           %td= task.project
-          %td= f.input :title, label: false, input_html: { class: 'js-task-input' }
-          %td= f.input :comment, label: false, input_html: { class: 'js-task-input' }
+          %td= f.text_field :title, class: 'js-task-input form-control'
+          %td= f.text_area :comment, class: 'js-task-input form-control'
           %td= link_to icon('fas', 'edit'), edit_task_path(task)
           %td
             = link_to icon('fas', 'trash'), task, :method => :delete, :data => { :confirm => 'Are you sure?' }
