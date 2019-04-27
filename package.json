@@ -1,5 +1,5 @@
 {
-  "name": "task_bucket",
+  "name": "task-bucket",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
