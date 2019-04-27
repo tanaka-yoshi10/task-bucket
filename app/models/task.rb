@@ -12,7 +12,7 @@ class Task < ApplicationRecord
   end
 
   def clone!
-    Task.create!(title: title, estimate: estimate)
+    Task.create!(title: title, estimate: estimate, project: project)
   end
 
   private
