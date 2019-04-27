@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :start, :complete, :clone]
+  before_action :set_task, only: %i[show edit update destroy start complete clone]
 
   # GET /tasks
   def index
@@ -69,13 +69,14 @@ class TasksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_task
-      @task = Task.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def task_params
-      params.require(:task).permit(:scheduled_on, :start_at, :end_at, :estimate, :project, :title, :comment)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_task
+    @task = Task.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def task_params
+    params.require(:task).permit(:scheduled_on, :start_at, :end_at, :estimate, :project, :title, :comment)
+  end
 end
