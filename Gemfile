@@ -13,6 +13,7 @@ gem 'hamlit-rails'
 gem 'simple_form'
 gem 'font-awesome-sass'
 gem 'ransack'
+gem 'uglifier'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
