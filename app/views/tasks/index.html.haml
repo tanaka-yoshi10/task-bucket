@@ -17,17 +17,17 @@
   .form-actions
     = f.button :submit, class: 'btn btn-primary'
 
-%h1 Listing tasks
-
 %ul.list-group
   - @tasks.each do |task|
     = simple_form_for(task, remote: true) do |f|
       %li.list-group-item.js-task-row.my-2
         .form-inline
           - if task.start_at.blank?
-            = link_to icon('fas', 'play'), start_task_path(task), method: :put
+            = link_to icon('fas', 'play'), start_task_path(task), method: :put, class: 'mx-2'
           - elsif task.end_at.blank?
-            = link_to icon('fas', 'stop'), complete_task_path(task), method: :put
+            = link_to icon('fas', 'pause'), pause_task_path(task), method: :put, class: 'mx-2'
+          - else
+            = link_to icon('fas', 'clone'), clone_task_path(task), method: :put, class: 'mx-2'
           = f.text_field :start_at, value: task.start_at.present? ? l(task.start_at, format: :only_time) : nil,
             class: 'js-timepicker js-task-input form-control mr-2', placeholder: '開始'
           = f.text_field :end_at, value: task.end_at.present? ? l(task.end_at, format: :only_time) : nil,

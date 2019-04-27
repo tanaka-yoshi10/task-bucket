@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :start, :complete]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :start, :complete, :clone]
 
   # GET /tasks
   def index
@@ -59,6 +59,11 @@ class TasksController < ApplicationController
   def complete
     @task.update!(end_at: Time.current)
     redirect_to tasks_url, notice: 'Task was successfully completed.'
+  end
+
+  def clone
+    @task.clone!
+    redirect_to tasks_url, notice: 'Task was successfully cloned.'
   end
 
   private

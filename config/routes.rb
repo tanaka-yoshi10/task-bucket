@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     member do
       put :start
       put :complete
+      put :clone
     end
   end
   resources :projects

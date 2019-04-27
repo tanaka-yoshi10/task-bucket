@@ -11,6 +11,10 @@ class Task < ApplicationRecord
     (end_at - start_at) / 1.minute
   end
 
+  def clone!
+    Task.create!(title: title, estimate: estimate)
+  end
+
   private
 
   def set_scheduled_on
