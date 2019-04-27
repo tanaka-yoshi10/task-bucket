@@ -8,6 +8,7 @@
     "jquery": "^3.4.0",
     "popper.js": "^1.15.0",
     "rails-ujs": "^5.2.3",
+    "timepicker": "^1.11.14",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10"

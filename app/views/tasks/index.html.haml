@@ -36,24 +36,31 @@
 
   %tbody
     - @tasks.each do |task|
-      %tr
-        %td
-          - if task.start_at.blank?
-            = link_to icon('fas', 'play'), start_task_path(task), method: :put
-          - elsif task.end_at.blank?
-            = link_to icon('fas', 'stop'), complete_task_path(task), method: :put
-        %td= task.start_at.present? ? l(task.start_at, format: :only_time) : ''
-        %td= task.end_at.present? ? l(task.end_at, format: :only_time) : ''
-        %td= task.estimate
-        %td= task.actual.to_i
-        %td= task.project
-        %td= task.title
-        %td= task.comment
-        %td
-          = link_to 'Show', task
-        %td= link_to 'Edit', edit_task_path(task)
-        %td= link_to icon('fas', 'trash'), task, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
+      = simple_form_for(task, remote: true) do |f|
+        %tr.js-task-row
+          %td
+            - if task.start_at.blank?
+              = link_to icon('fas', 'play'), start_task_path(task), method: :put
+            - elsif task.end_at.blank?
+              = link_to icon('fas', 'stop'), complete_task_path(task), method: :put
+          %td
+            = f.input :start_at, as: :string, label: false,
+              input_html: { value: task.start_at.present? ? l(task.start_at, format: :only_time) : nil, class: 'js-timepicker js-task-input' }
+          %td
+            = f.input :end_at, as: :string, label: false,
+              input_html: { value: task.end_at.present? ? l(task.end_at, format: :only_time) : nil, class: 'js-timepicker js-task-input' }
+          %td= f.input :estimate, label: false
+          %td= task.actual.to_i
+          %td= task.project
+          %td= task.title
+          %td= task.comment
+          %td
+            = link_to 'Show', task
+          %td= link_to 'Edit', edit_task_path(task)
+          %td
+            = link_to icon('fas', 'trash'), task, :method => :delete, :data => { :confirm => 'Are you sure?' }
+            .d-none
+              = f.submit data: { disable_with: false }
 %br
 
 = link_to 'New Task', new_task_path, class: 'btn btn-primary'

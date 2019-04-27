@@ -35,7 +35,10 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   def update
     if @task.update(task_params)
-      redirect_to @task, notice: 'Task was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
+        format.js { head :ok }
+      end
     else
       render :edit
     end
