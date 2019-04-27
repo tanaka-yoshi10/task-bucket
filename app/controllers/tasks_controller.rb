@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :start, :complete]
 
   # GET /tasks
   def index
@@ -45,6 +45,16 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+  end
+
+  def start
+    @task.update!(start_at: Time.current)
+    redirect_to tasks_url, notice: 'Task was successfully started.'
+  end
+
+  def complete
+    @task.update!(end_at: Time.current)
+    redirect_to tasks_url, notice: 'Task was successfully completed.'
   end
 
   private

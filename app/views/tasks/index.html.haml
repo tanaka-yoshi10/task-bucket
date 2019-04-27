@@ -22,7 +22,7 @@
 %table.table
   %thead
     %tr
-      %th 日付
+      %th
       %th 開始
       %th 終了
       %th 見積
@@ -37,7 +37,11 @@
   %tbody
     - @tasks.each do |task|
       %tr
-        %td= l(task.scheduled_on)
+        %td
+          - if task.start_at.blank?
+            = link_to icon('fas', 'play'), start_task_path(task), method: :put
+          - elsif task.end_at.blank?
+            = link_to icon('fas', 'stop'), complete_task_path(task), method: :put
         %td= task.start_at.present? ? l(task.start_at, format: :only_time) : ''
         %td= task.end_at.present? ? l(task.end_at, format: :only_time) : ''
         %td= task.estimate
@@ -45,7 +49,8 @@
         %td= task.project
         %td= task.title
         %td= task.comment
-        %td= link_to 'Show', task
+        %td
+          = link_to 'Show', task
         %td= link_to 'Edit', edit_task_path(task)
         %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
