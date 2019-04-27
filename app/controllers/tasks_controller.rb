@@ -24,6 +24,7 @@ class TasksController < ApplicationController
   # POST /tasks
   def create
     @task = Task.new(task_params)
+    @task.start_at = Time.current
 
     if @task.save
       redirect_to tasks_url, notice: 'Task was successfully created.'
