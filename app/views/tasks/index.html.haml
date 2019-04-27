@@ -34,7 +34,7 @@
             class: 'js-timepicker js-task-input form-control mr-2', placeholder: '終了'
           = f.number_field :estimate, class: 'js-task-input form-control mr-2', placeholder: '予測'
           = task.actual.to_i
-          = task.project
+          = f.association :project, label: false, input_html: { class: 'js-task-input' }
         .my-2= f.text_field :title, class: 'js-task-input form-control', placeholder: 'タスク名'
         .my-2= f.text_area :comment, class: 'js-task-input form-control', placeholder: 'ふりかえり'
         .my-2
@@ -45,3 +45,4 @@
 %br
 
 = link_to 'New Task', new_task_path, class: 'btn btn-primary'
+= link_to 'Projects', projects_path
