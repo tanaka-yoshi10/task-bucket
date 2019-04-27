@@ -22,6 +22,7 @@
   - @tasks.each do |task|
     = simple_form_for(task, remote: true) do |f|
       %li.list-group-item.js-task-row.my-2
+        .my-2= f.text_field :title, class: 'js-task-input form-control', placeholder: 'タスク名'
         .form-inline
           - if task.start_at.blank?
             = link_to icon('fas', 'play'), start_task_path(task), method: :put, class: 'mx-2'
@@ -34,7 +35,6 @@
           = f.number_field :estimate, class: 'js-task-input form-control mr-2', placeholder: '予測'
           = task.actual.to_i
           = f.association :project, label: false, input_html: { class: 'js-task-input' }
-        .my-2= f.text_field :title, class: 'js-task-input form-control', placeholder: 'タスク名'
         .my-2= f.text_area :comment, class: 'js-task-input form-control', placeholder: 'ふりかえり'
         .my-2
           = link_to icon('fas', 'clone'), clone_task_path(task), method: :put
