@@ -68,6 +68,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:scheduled_on, :start_at, :end_at, :estimate, :project, :title, :comment)
+    params.require(:task).permit(:scheduled_on, :start_at, :end_at, :estimate, :project_id, :title, :comment)
   end
 end
