@@ -1,0 +1,36 @@
+= search_form_for @q, url: daily_reports_path, class: 'form-horizontal' do |f|
+  .input-group.my-3
+    .input-group-prepend
+      %span.input-group-text= icon('fas', 'calendar')
+    = f.search_field :scheduled_on_eq, class: 'form-control'
+    .mx-3
+      = f.submit class: 'btn btn-primary'
+
+%table.table
+  %thead
+    %tr
+      %th 開始
+      %th 終了
+      %th 見積
+      %th{ colspan: 2 } 実績
+      %th Project
+      %th タスク
+      %th コメント
+      %th
+      %th
+      %th
+
+  %tbody
+    - @tasks.each do |task|
+      %tr
+        %td= l(task.start_at, format: :only_time)
+        %td= l(task.end_at, format: :only_time)
+        %td= task.estimate
+        %td= task.actual.to_i
+        %td= '*' * (task.actual.to_i / 10 + 1)
+        %td= task.project&.name
+        %td= task.title
+        %td= task.comment
+        %td= link_to 'Show', task
+        %td= link_to 'Edit', edit_task_path(task)
+        %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }

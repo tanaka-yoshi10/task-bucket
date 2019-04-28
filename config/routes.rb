@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     end
   end
   resources :projects
+  resources :daily_reports, only: %i(index)
 end
