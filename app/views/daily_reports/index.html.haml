@@ -30,7 +30,7 @@
         %td= '*' * (task.actual.to_i / 10 + 1)
         %td= task.project&.name
         %td= task.title
-        %td= task.comment
+        %td= hbr(task.comment)
         %td= link_to 'Show', task
         %td= link_to 'Edit', edit_task_path(task)
         %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }
