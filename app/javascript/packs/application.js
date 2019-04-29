@@ -11,6 +11,7 @@ import '@fortawesome/fontawesome-free/js/all'
 import Rails from 'rails-ujs';
 Rails.start();
 
+import './date_picker'
 import './time_picker'
 import './tasks'
 

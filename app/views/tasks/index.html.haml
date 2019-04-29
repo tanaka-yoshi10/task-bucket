@@ -2,7 +2,7 @@
   .input-group.my-3
     .input-group-prepend
       %span.input-group-text= icon('fas', 'calendar')
-    = f.search_field :scheduled_on_eq, class: 'form-control'
+    = f.search_field :scheduled_on_eq, class: 'form-control js-datepicker'
     .mx-3
       = f.submit class: 'btn btn-primary'
 
