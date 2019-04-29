@@ -40,8 +40,8 @@
           = link_to icon('fas', 'clone'), clone_task_path(task), method: :put
           = link_to icon('fas', 'edit'), edit_task_path(task)
           = link_to icon('fas', 'trash'), task, :method => :delete, :data => { :confirm => 'Are you sure?' }
-        .d-none
-          = f.submit data: { disable_with: false }
+        %div
+          = f.submit data: { disable_with: false }, class: 'btn btn-secondary'
 %br
 
 = link_to 'New Task', new_task_path, class: 'btn btn-primary'
