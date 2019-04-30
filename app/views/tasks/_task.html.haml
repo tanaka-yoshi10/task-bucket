@@ -33,7 +33,7 @@
     .my-2= hbr(task.comment)
   .my-2
     - if task.start_at.blank?
-      = link_to icon('fas', 'play'), start_task_path(task), method: :put, class: 'mx-2 btn btn-success'
+      = link_to icon('fas', 'play'), start_task_path(task), method: :put, class: 'mx-2 btn btn-success', remote: true
     - elsif task.end_at.blank?
-      = link_to icon('fas', 'stop'), complete_task_path(task), method: :put, class: 'mx-2 btn btn-danger'
+      = link_to icon('fas', 'stop'), complete_task_path(task), method: :put, class: 'mx-2 btn btn-danger', remote: true
     = link_to icon('fas', 'clone'), clone_task_path(task), method: :put, class: 'btn'

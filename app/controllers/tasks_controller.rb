@@ -48,12 +48,10 @@ class TasksController < ApplicationController
 
   def start
     @task.update!(start_at: Time.current)
-    redirect_to tasks_url, notice: 'Task was successfully started.'
   end
 
   def complete
     @task.update!(end_at: Time.current)
-    redirect_to tasks_url, notice: 'Task was successfully completed.'
   end
 
   def clone
