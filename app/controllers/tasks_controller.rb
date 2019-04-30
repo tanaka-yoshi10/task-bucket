@@ -56,7 +56,6 @@ class TasksController < ApplicationController
 
   def clone
     @task.clone!
-    redirect_to tasks_url, notice: 'Task was successfully cloned.'
   end
 
   private

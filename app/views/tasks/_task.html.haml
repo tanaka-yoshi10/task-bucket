@@ -36,4 +36,4 @@
       = link_to icon('fas', 'play'), start_task_path(task), method: :put, class: 'mx-2 btn btn-success', remote: true
     - elsif task.end_at.blank?
       = link_to icon('fas', 'stop'), complete_task_path(task), method: :put, class: 'mx-2 btn btn-danger', remote: true
-    = link_to icon('fas', 'clone'), clone_task_path(task), method: :put, class: 'btn'
+    = link_to icon('fas', 'clone'), clone_task_path(task), method: :put, class: 'btn', remote: true

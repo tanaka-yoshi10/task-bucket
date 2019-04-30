@@ -18,7 +18,7 @@
     = f.button :submit, '開始', class: 'btn btn-primary'
     = f.button :submit, '登録', class: 'btn btn-secondary'
 
-%ul.list-group
+%ul.list-group#js-task-list
   - @tasks.each do |task|
     .js-task-row{ id: "js-task-#{task.id}" }
       = render 'task', task: task
