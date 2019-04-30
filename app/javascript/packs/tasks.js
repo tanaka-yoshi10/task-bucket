@@ -2,7 +2,7 @@ import $ from 'jquery'
 import 'timepicker/jquery.timepicker'
 
 $(() => {
-  $('.container-fluid').on('click', '.js-task-view', (event) => {
+  $('.container-fluid').on('click', '.js-task-toggle-view', (event) => {
     const target = $(event.target)
     const row = target.closest('.js-task-row')
     const view = row.find('.js-task-view')
