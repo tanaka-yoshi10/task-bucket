@@ -34,7 +34,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       respond_to do |format|
         format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
-        format.js { head :ok }
+        format.js
       end
     else
       render :edit

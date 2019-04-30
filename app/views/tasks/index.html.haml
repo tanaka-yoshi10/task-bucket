@@ -20,38 +20,8 @@
 
 %ul.list-group
   - @tasks.each do |task|
-    .js-task-row
-      %li.list-group-item.js-task-edit.my-2.d-none
-        = simple_form_for(task, remote: true) do |f|
-          .my-2= f.text_field :title, class: 'js-task-input form-control', placeholder: 'タスク名'
-          .form-inline
-            = f.text_field :start_at, value: task.start_at.present? ? l(task.start_at, format: :only_time) : nil,
-              class: 'js-timepicker js-task-input form-control mr-2', placeholder: '開始'
-            = f.text_field :end_at, value: task.end_at.present? ? l(task.end_at, format: :only_time) : nil,
-              class: 'js-timepicker js-task-input form-control mr-2', placeholder: '終了'
-            = f.number_field :estimate, class: 'js-task-input form-control mr-2', placeholder: '予測'
-            = task.actual.to_i
-            = f.association :project, label: false, input_html: { class: 'js-task-input' }
-          .my-2= f.text_area :comment, class: 'js-task-input form-control', placeholder: 'ふりかえり'
-          %div
-            = f.submit data: { disable_with: false }, class: 'btn btn-secondary js-submit-task'
-      %li.list-group-item.js-task-view.my-2
-        .my-2= task.title
-        .form-inline
-          - if task.start_at.blank?
-            = link_to icon('fas', 'play'), start_task_path(task), method: :put, class: 'mx-2'
-          - elsif task.end_at.blank?
-            = link_to icon('fas', 'stop'), complete_task_path(task), method: :put, class: 'mx-2'
-          = task.start_at.present? ? l(task.start_at, format: :only_time) : nil
-          = task.end_at.present? ? l(task.end_at, format: :only_time) : nil
-          = task.estimate
-          = task.actual.to_i
-          = task.project&.name
-        .my-2= hbr(task.comment)
-        .my-2
-          = link_to icon('fas', 'clone'), clone_task_path(task), method: :put
-          = link_to icon('fas', 'edit'), edit_task_path(task)
-          = link_to icon('fas', 'trash'), task, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    .js-task-row{ id: "js-task-#{task.id}" }
+      = render 'task', task: task
 %br
 
 = link_to 'New Task', new_task_path, class: 'btn btn-primary'
