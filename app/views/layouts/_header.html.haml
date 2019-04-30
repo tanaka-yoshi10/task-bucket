@@ -8,3 +8,6 @@
         %a.nav-link{ href: projects_path } Projects
       %li.nav-item
         %a.nav-link{ href: daily_reports_path } Daily Report
+      - if user_signed_in?
+        %li.nav-item
+          = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'
