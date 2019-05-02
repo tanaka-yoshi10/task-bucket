@@ -23,7 +23,7 @@
   %tbody
     - @tasks.each do |task|
       %tr
-        %td= l(task.start_at, format: :only_time)
+        %td= task.start_at.present? ? l(task.start_at, format: :only_time) : ''
         %td= task.end_at.present? ? l(task.end_at, format: :only_time) : ''
         %td= task.estimate
         %td= task.end_at.present? ? task.actual.to_i : ''
