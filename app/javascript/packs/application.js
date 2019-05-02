@@ -7,9 +7,11 @@ window.$ = jQuery;
 import 'popper.js';
 import 'bootstrap';
 import '@fortawesome/fontawesome-free/js/all'
+import Turbolinks from 'turbolinks';
 
 import Rails from 'rails-ujs';
 Rails.start();
+Turbolinks.start()
 
 import './date_picker'
 import './time_picker'
