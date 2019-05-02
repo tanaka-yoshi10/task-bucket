@@ -6,7 +6,7 @@
     .mx-3
       = f.submit class: 'btn btn-primary'
 
-= simple_form_for(@new_task) do |f|
+= simple_form_for(@new_task, remote: true) do |f|
   .form-row
     .col-7
       = f.input :title, label: false, placeholder: 'タスク名'

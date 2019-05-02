@@ -26,7 +26,10 @@ class TasksController < ApplicationController
     end
 
     if @task.save
-      redirect_to tasks_url, notice: 'Task was successfully created.'
+      respond_to do |format|
+        format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
+        format.js
+      end
     else
       render :new
     end
