@@ -2,27 +2,27 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy start complete clone]
 
   def index
-    @q = Task.ransack(params.fetch(:q, scheduled_on_eq: Time.current))
+    @q = current_user.tasks.ransack(params.fetch(:q, scheduled_on_eq: Time.current))
     @tasks = @q.result.order(start_at: :desc)
-    @new_task = Task.new
+    @new_task = current_user.tasks.build
   end
 
   def show
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.build
   end
 
   def edit
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if params[:commit] == '開始'
       @task.start_at = Time.current
     elsif params[:commit] == '直前のタスクの終了時刻'
-      @task.start_at = Task.order(:end_at).pluck(:end_at).compact.last
+      @task.start_at = current_user.tasks.order(:end_at).pluck(:end_at).compact.last
     end
 
     if @task.save
@@ -63,7 +63,7 @@ class TasksController < ApplicationController
   private
 
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   def task_params

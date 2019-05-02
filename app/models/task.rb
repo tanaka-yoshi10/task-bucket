@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   belongs_to :project, optional: true
+  belongs_to :user
 
   validates :scheduled_on, presence: true
 
@@ -13,7 +14,7 @@ class Task < ApplicationRecord
   end
 
   def clone!
-    Task.create!(title: title, estimate: estimate, project: project)
+    user.tasks.create!(title: title, estimate: estimate, project: project)
   end
 
   private
