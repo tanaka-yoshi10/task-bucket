@@ -21,6 +21,8 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     if params[:commit] == '開始'
       @task.start_at = Time.current
+    elsif params[:commit] == '直前のタスクの終了時刻'
+      @task.start_at = Task.order(:end_at).pluck(:end_at).compact.last
     end
 
     if @task.save
