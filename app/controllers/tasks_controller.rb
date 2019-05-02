@@ -57,7 +57,7 @@ class TasksController < ApplicationController
   end
 
   def clone
-    @task.clone!
+    @task = @task.clone!
   end
 
   private
