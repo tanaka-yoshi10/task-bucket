@@ -19,6 +19,10 @@
     = f.button :submit, '直前のタスクの終了時刻', class: 'btn btn-primary'
     = f.button :submit, '登録', class: 'btn btn-secondary'
 
+- estimate = @tasks.not_completed.sum(:estimate)
+残り #{estimate}分
+終了予定 #{l(Time.current.since(estimate.minutes), format: :only_time)}
+
 %ul.list-group#js-task-list
   - @tasks.each do |task|
     .js-task-row{ id: "js-task-#{task.id}" }

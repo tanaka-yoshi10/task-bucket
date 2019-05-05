@@ -9,6 +9,11 @@ class Task < ApplicationRecord
   before_validation :set_start_at
   before_validation :set_end_at
 
+  scope :doing, -> { where.not(start_at: nil).where(end_at: nil) }
+  scope :not_started, -> { where(start_at: nil).where(end_at: nil) }
+  scope :completed, -> { where.not(start_at: nil).where.not(end_at: nil) }
+  scope :not_completed, -> { where(end_at: nil) }
+
   def actual
     return nil if start_at.blank? || end_at.blank?
 
