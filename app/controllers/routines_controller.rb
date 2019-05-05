@@ -3,7 +3,7 @@ class RoutinesController < ApplicationController
 
   # GET /routines
   def index
-    @routines = current_user.routines.all
+    @routines = current_user.routines.order(:title).includes(:project)
   end
 
   # GET /routines/1
