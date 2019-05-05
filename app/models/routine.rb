@@ -1,5 +1,5 @@
 class Routine < ApplicationRecord
-  belongs_to :project
+  belongs_to :project, optional: true
   belongs_to :user
 
   has_many :tasks, dependent: :nullify
