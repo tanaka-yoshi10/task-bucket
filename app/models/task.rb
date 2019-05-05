@@ -24,7 +24,7 @@ class Task < ApplicationRecord
     if scheduled_on.blank?
       if start_at.present?
         self.scheduled_on = start_at
-      else scheduled_on.blank?
+      elsif scheduled_on.blank?
         self.scheduled_on = Time.current
       end
     end

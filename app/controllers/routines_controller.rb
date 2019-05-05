@@ -1,5 +1,5 @@
 class RoutinesController < ApplicationController
-  before_action :set_routine, only: [:show, :edit, :update, :destroy]
+  before_action :set_routine, only: %i[show edit update destroy]
 
   # GET /routines
   def index
@@ -46,13 +46,14 @@ class RoutinesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_routine
-      @routine = current_user.routines.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def routine_params
-      params.require(:routine).permit(:recurrence, :title, :estimate, :project_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_routine
+    @routine = current_user.routines.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def routine_params
+    params.require(:routine).permit(:recurrence, :title, :estimate, :project_id)
+  end
 end

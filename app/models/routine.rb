@@ -14,7 +14,7 @@ class Routine < ApplicationRecord
           title: routine.title,
           user: routine.user,
           project: routine.project,
-          estimate: routine.estimate,
+          estimate: routine.estimate
         )
       end
     end
