@@ -6,7 +6,8 @@ class Task < ApplicationRecord
   validates :scheduled_on, presence: true
 
   before_validation :set_scheduled_on
-  before_validation :set_time
+  before_validation :set_start_at
+  before_validation :set_end_at
 
   def actual
     return nil if start_at.blank? || end_at.blank?
@@ -21,35 +22,38 @@ class Task < ApplicationRecord
   private
 
   def set_scheduled_on
-    if scheduled_on.blank?
-      if start_at.present?
-        self.scheduled_on = start_at
-      elsif scheduled_on.blank?
-        self.scheduled_on = Time.current
-      end
+    return if scheduled_on.present?
+
+    if start_at.present?
+      self.scheduled_on = start_at
+    elsif scheduled_on.blank?
+      self.scheduled_on = Time.current
     end
   end
 
-  def set_time
-    if start_at.present?
-      self.start_at = Time.zone.local(
-        scheduled_on.year,
-        scheduled_on.month,
-        scheduled_on.day,
-        start_at.hour,
-        start_at.min,
-        start_at.sec
-      )
-    end
-    if end_at.present?
-      self.end_at = Time.zone.local(
-        scheduled_on.year,
-        scheduled_on.month,
-        scheduled_on.day,
-        end_at.hour,
-        end_at.min,
-        end_at.sec
-      )
-    end
+  def set_start_at
+    return if start_at.blank?
+
+    self.start_at = Time.zone.local(
+      scheduled_on.year,
+      scheduled_on.month,
+      scheduled_on.day,
+      start_at.hour,
+      start_at.min,
+      start_at.sec
+    )
+  end
+
+  def set_end_at
+    return if end_at.blank?
+
+    self.end_at = Time.zone.local(
+      scheduled_on.year,
+      scheduled_on.month,
+      scheduled_on.day,
+      end_at.hour,
+      end_at.min,
+      end_at.sec
+    )
   end
 end
