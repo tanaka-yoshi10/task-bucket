@@ -1,0 +1,25 @@
+%h1 Listing routines
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Estimate
+      %th Project
+      %th
+      %th
+      %th
+
+  %tbody
+    - @routines.each do |routine|
+      %tr
+        %td= routine.title
+        %td= routine.estimate
+        %td= routine.project&.name
+        %td= link_to 'Show', routine
+        %td= link_to 'Edit', edit_routine_path(routine)
+        %td= link_to 'Destroy', routine, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Routine', new_routine_path

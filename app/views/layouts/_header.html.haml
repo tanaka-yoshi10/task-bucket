@@ -5,7 +5,11 @@
   #navbarSupportedContent.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
       %li.nav-item
+        %a.nav-link{ href: tasks_path } DashBoard
+      %li.nav-item
         %a.nav-link{ href: projects_path } Projects
+      %li.nav-item
+        %a.nav-link{ href: routines_path } Routines
       %li.nav-item
         %a.nav-link{ href: daily_reports_path } Daily Report
       - if user_signed_in?

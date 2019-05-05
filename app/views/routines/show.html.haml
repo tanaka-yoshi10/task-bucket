@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Recurrence:
+  = @routine.recurrence
+%p
+  %b Title:
+  = @routine.title
+%p
+  %b Estimate:
+  = @routine.estimate
+%p
+  %b Project:
+  = @routine.project
+%p
+  %b User:
+  = @routine.user
+
+= link_to 'Edit', edit_routine_path(@routine)
+\|
+= link_to 'Back', routines_path
