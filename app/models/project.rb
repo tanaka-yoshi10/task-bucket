@@ -4,4 +4,6 @@ class Project < ApplicationRecord
   belongs_to :user
 
   validates :name, presence: true
+
+  scope :default_order, -> { order(:name, :id) }
 end

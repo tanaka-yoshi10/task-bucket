@@ -6,7 +6,7 @@
   .form-inputs
     = f.input :title
     = f.input :estimate
-    = f.association :project
+    = f.association :project, collection: current_user.projects.default_order
 
   .form-actions
     = f.button :submit

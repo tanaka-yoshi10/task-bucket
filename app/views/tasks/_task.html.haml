@@ -8,7 +8,7 @@
             class: 'js-timepicker js-task-input form-control mr-2', placeholder: '終了'
       = f.number_field :estimate, class: 'js-task-input form-control mr-2', placeholder: '予測'
       = task.actual.to_i
-      = f.association :project, label: false, input_html: { class: 'js-task-input' }
+      = f.association :project, label: false, input_html: { class: 'js-task-input' }, collection: current_user.projects.default_order
     .my-2= f.text_area :comment, class: 'js-task-input form-control', placeholder: 'ふりかえり'
     %div
       = f.submit data: { disable_with: false }, class: 'btn btn-secondary js-submit-task'
