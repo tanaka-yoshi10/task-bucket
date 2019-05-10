@@ -2,10 +2,10 @@
   <div>
     <div class="row">
       <div class="col s10 m11">
-        <input class="form-control" placeholder="Add your task!!">
+        <input v-model="newTask" class="form-control" placeholder="Add your task!!">
       </div>
       <div class="col s2 m1">
-        <div class="btn-floating waves-effect waves-light red">
+        <div v-on:click="createTask" class="btn btn-primary">
           <i class="material-icons">add</i>
         </div>
       </div>
@@ -39,6 +39,9 @@
 
 <script>
   import axios from 'axios';
+  import { csrfToken } from 'rails-ujs';
+
+  axios.defaults.headers.common['X-CSRF-Token'] = csrfToken();
 
   export default {
     data: function () {
@@ -60,6 +63,16 @@
           console.log(error);
         });
       },
+      createTask: function () {
+        if (!this.newTask) return;
+
+        axios.post('/tasks.json', { task: { title: this.newTask } }).then((response) => {
+          this.tasks.unshift(response.data.task);
+          this.newTask = '';
+        }, (error) => {
+          console.log(error);
+        });
+      }
     }
   }
 </script>

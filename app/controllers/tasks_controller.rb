@@ -29,6 +29,7 @@ class TasksController < ApplicationController
       respond_to do |format|
         format.html { redirect_to tasks_url, notice: 'Task was successfully created.' }
         format.js
+        format.json { render 'show' }
       end
     else
       render :new
