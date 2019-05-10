@@ -3,6 +3,12 @@
 終了予定 #{l(Time.current.since(estimate.minutes), format: :only_time)}
 
 %ul.list-group
-  - @tasks.each do |task|
+  - @tasks.doing.each do |task|
+    .js-task-row{ id: "js-task-#{task.id}" }
+      = render 'task', task: task
+  - @tasks.not_started.each do |task|
+    .js-task-row{ id: "js-task-#{task.id}" }
+      = render 'task', task: task
+  - @tasks.completed.each do |task|
     .js-task-row{ id: "js-task-#{task.id}" }
       = render 'task', task: task
