@@ -1,0 +1,8 @@
+- estimate = @tasks.not_completed.sum(:estimate)
+残り #{estimate}分
+終了予定 #{l(Time.current.since(estimate.minutes), format: :only_time)}
+
+%ul.list-group
+  - @tasks.each do |task|
+    .js-task-row{ id: "js-task-#{task.id}" }
+      = render 'task', task: task
