@@ -2,8 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy start complete clone]
 
   def index
-    @q = current_user.tasks.ransack(params.fetch(:q, scheduled_on_eq: Time.current))
-    @tasks = @q.result.order(start_at: :desc).order(:title).includes(:project)
+    @tasks = current_user.tasks.where(scheduled_on: Time.current).order(start_at: :desc).order(:title).includes(:project)
     @new_task = current_user.tasks.build
   end
 
