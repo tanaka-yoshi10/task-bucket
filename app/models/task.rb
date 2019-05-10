@@ -4,6 +4,7 @@ class Task < ApplicationRecord
   belongs_to :routine, optional: true
 
   validates :scheduled_on, presence: true
+  validates :title, presence: true
 
   before_validation :set_scheduled_on
   before_validation :set_start_at
