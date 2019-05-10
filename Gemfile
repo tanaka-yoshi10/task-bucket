@@ -9,6 +9,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
 gem 'font-awesome-sass'
 gem 'hamlit-rails'
+gem 'jbuilder'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'ransack'
