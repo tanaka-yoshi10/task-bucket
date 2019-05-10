@@ -18,7 +18,10 @@
     .my-2
       = task.title
       - if task.project.present?
-        [#{task.project&.name}]
+        - if task.project.color.present?
+          %span.badge.text-light{ style: "background-color:#{task.project.color}" }= task.project&.name
+        - else
+          %span.badge.badge-secondary= task.project&.name
     .form-inline
       = task.start_at.present? ? l(task.start_at, format: :only_time) : nil
       - if task.end_at.present?
