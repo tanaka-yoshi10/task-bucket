@@ -63,6 +63,10 @@ class TasksController < ApplicationController
     @task = @task.clone!
   end
 
+  def not_completed
+    @tasks = current_user.tasks.not_completed.order(:scheduled_on, :title)
+  end
+
   private
 
   def set_task

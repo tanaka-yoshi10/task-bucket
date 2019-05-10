@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       put :complete
       put :clone
     end
+    collection do
+      get :not_completed
+    end
   end
   resources :projects
   resources :daily_reports, only: %i(index)
