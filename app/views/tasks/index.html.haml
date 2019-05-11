@@ -3,7 +3,7 @@
     .col-7
       = f.input :title, label: false, placeholder: 'タスク名'
     .col
-      = f.association :project, label: false, collection: current_user.projects.default_order
+      = f.association :project, label: false, collection: current_user.projects.active.default_order
     .col
       = f.input :estimate, label: false, placeholder: '見積'
   .form-actions

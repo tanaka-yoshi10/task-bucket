@@ -7,7 +7,7 @@
     = f.input :start_at
     = f.input :end_at
     = f.input :estimate
-    = f.association :project, collection: current_user.projects.default_order
+    = f.association :project, collection: current_user.projects.active.default_order
     = f.input :title
     = f.input :comment
 

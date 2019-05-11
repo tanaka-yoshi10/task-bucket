@@ -8,4 +8,5 @@ class Project < ApplicationRecord
   validates :name, presence: true
 
   scope :default_order, -> { order(:name, :id) }
+  scope :active, -> { where(archive: false) }
 end
