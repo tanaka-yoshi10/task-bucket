@@ -14,7 +14,11 @@
     - @projects.each do |project|
       %tr
         %td= project.name
-        %td= project.color
+        %td
+          - if project.color.present?
+            %span.badge.text-light{ style: "background-color:#{project.color}" }= project.color
+          - else
+            %span.badge.badge-secondary= project.color
         %td= project.archive
         %td= link_to 'Show', project
         %td= link_to 'Edit', edit_project_path(project)
