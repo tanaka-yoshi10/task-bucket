@@ -1,12 +1,12 @@
-= link_to '<', daily_reports_path(date: @date.yesterday.to_date)
-= form_tag url: daily_reports_path, class: 'form-horizontal' do |f|
+= form_tag daily_reports_path, method: :get, class: 'form-horizontal' do |f|
   .input-group.my-3
+    = link_to '<', daily_reports_path(date: @date.yesterday.to_date), class: 'btn'
     .input-group-prepend
       %span.input-group-text= icon('fas', 'calendar')
-    = text_field_tag :date, class: 'form-control js-datepicker'
-    .mx-3
-      = submit_tag class: 'btn btn-primary'
-= link_to '>', daily_reports_path(date: @date.tomorrow.to_date)
+    = text_field_tag :date, @date, class: 'form-control js-datepicker'
+    .input-group-append
+      = submit_tag 'go', class: 'btn btn-primary'
+    = link_to '>', daily_reports_path(date: @date.tomorrow.to_date), class: 'btn'
 
 %table.table.table-responsive
   %thead
