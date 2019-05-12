@@ -1,6 +1,11 @@
 class DailyReportsController < ApplicationController
   def index
-    @q = current_user.tasks.ransack(params.fetch(:q, scheduled_on_eq: Time.current))
-    @tasks = @q.result.order(:start_at)
+    @date = begin
+      Date.parse(params[:date].to_s)
+    rescue ArgumentError
+      Time.current
+    end
+
+    @tasks = current_user.tasks.where(scheduled_on: @date).order(:start_at)
   end
 end

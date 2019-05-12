@@ -1,10 +1,12 @@
-= search_form_for @q, url: daily_reports_path, class: 'form-horizontal' do |f|
+= link_to '<', daily_reports_path(date: @date.yesterday.to_date)
+= form_tag url: daily_reports_path, class: 'form-horizontal' do |f|
   .input-group.my-3
     .input-group-prepend
       %span.input-group-text= icon('fas', 'calendar')
-    = f.search_field :scheduled_on_eq, class: 'form-control js-datepicker'
+    = text_field_tag :date, class: 'form-control js-datepicker'
     .mx-3
-      = f.submit class: 'btn btn-primary'
+      = submit_tag class: 'btn btn-primary'
+= link_to '>', daily_reports_path(date: @date.tomorrow.to_date)
 
 %table.table.table-responsive
   %thead
