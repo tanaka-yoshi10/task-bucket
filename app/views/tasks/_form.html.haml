@@ -3,9 +3,9 @@
   = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
   .form-inputs
-    = f.input :scheduled_on
-    = f.input :start_at
-    = f.input :end_at
+    = f.input :scheduled_on, html5: true
+    = f.input :start_at, html5: true
+    = f.input :end_at, html5: true
     = f.input :estimate
     = f.association :project, collection: current_user.projects.active.default_order
     = f.input :title
