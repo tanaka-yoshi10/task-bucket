@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     if @task.update(task_params)
       respond_to do |format|
         format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
-        format.js
+        format.js { render :index }
       end
     else
       render :edit
@@ -54,14 +54,17 @@ class TasksController < ApplicationController
 
   def start
     @task.update!(start_at: Time.current)
+    render :index
   end
 
   def complete
     @task.update!(end_at: Time.current)
+    render :index
   end
 
   def clone
-    @task = @task.clone!
+    @task.clone!
+    render :index
   end
 
   def not_completed
