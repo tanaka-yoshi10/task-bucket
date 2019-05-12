@@ -22,6 +22,8 @@
           %span.badge.text-light{ style: "background-color:#{task.project.color}" }= task.project&.name
         - else
           %span.badge.badge-secondary= task.project&.name
+      - if task.routine.present?
+        = link_to icon('fas', 'redo'), edit_routine_path(task.routine), class: 'btn'
     .form-inline
       = task.start_at.present? ? l(task.start_at, format: :only_time) : nil
       - if task.end_at.present?
