@@ -48,6 +48,6 @@
       %tr
         %td= project&.name
         %td= tasks.pluck(:estimate).compact.sum
-        %td= tasks.map(&:actual).compact.sum
+        %td= tasks.map(&:actual).compact.sum.to_i
 
 
