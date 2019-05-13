@@ -45,8 +45,9 @@
       %th 実績
   %tbody
     - @tasks.group_by {|task| task.project }.each do |project, tasks|
-      %td= project&.name
-      %td= tasks.pluck(:estimate).compact.sum
-      %td= tasks.map(&:actual).compact.sum
+      %tr
+        %td= project&.name
+        %td= tasks.pluck(:estimate).compact.sum
+        %td= tasks.map(&:actual).compact.sum
 
 
