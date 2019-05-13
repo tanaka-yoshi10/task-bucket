@@ -36,3 +36,17 @@
         %td= link_to 'Show', task
         %td= link_to 'Edit', edit_task_path(task)
         %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%table.table.table-responsive
+  %thead
+    %tr
+      %th プロジェクト
+      %th 見積
+      %th 実績
+  %tbody
+    - @tasks.group_by {|task| task.project }.each do |project, tasks|
+      %td= project&.name
+      %td= tasks.pluck(:estimate).compact.sum
+      %td= tasks.map(&:actual).compact.sum
+
+
