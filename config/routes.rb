@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       get :not_completed
     end
   end
-  resources :projects
+  resources :projects do
+    resources :tasks, only: %i(index), module: :projects
+  end
   resources :daily_reports, only: %i(index)
   resource :dashboard
 end

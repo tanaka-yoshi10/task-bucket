@@ -11,7 +11,7 @@
   %tbody
     - @projects.each do |project|
       %tr
-        %td= project.name
+        %td= link_to project.name, project_tasks_path(project)
         %td
           - if project.color.present?
             %span.badge.text-light{ style: "background-color:#{project.color}" }= project.color
