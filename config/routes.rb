@@ -16,5 +16,6 @@ Rails.application.routes.draw do
     resources :tasks, only: %i(index), module: :projects
   end
   resources :daily_reports, only: %i(index)
+  resources :weekly_reports, only: %i(index)
   resource :dashboard
 end
