@@ -8,5 +8,5 @@
       = submit_tag 'go', class: 'btn btn-primary'
     = link_to '>', weekly_reports_path(date: @date.since(1.week).to_date), class: 'btn'
 
-= render 'tasks/task_list', tasks: @tasks
 = render 'projects/project_list', tasks: @tasks
+= render 'tasks/task_list', tasks: @tasks
