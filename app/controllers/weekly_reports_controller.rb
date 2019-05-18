@@ -7,6 +7,6 @@ class WeeklyReportsController < ApplicationController
     end
     @date = @date.beginning_of_week
 
-    @tasks = current_user.tasks.where(scheduled_on: @date.all_week).order(:scheduled_on, :start_at)
+    @tasks = current_user.tasks.where(scheduled_on: @date.all_week).default_order
   end
 end

@@ -6,6 +6,6 @@ class DailyReportsController < ApplicationController
       Time.current.to_date
     end
 
-    @tasks = current_user.tasks.where(scheduled_on: @date).order(:start_at)
+    @tasks = current_user.tasks.where(scheduled_on: @date).default_order
   end
 end
