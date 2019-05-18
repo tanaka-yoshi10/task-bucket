@@ -2,11 +2,13 @@
   %thead
     %tr
       %th プロジェクト
+      %th 説明
       %th 見積
       %th 実績
   %tbody
     - tasks.group_by {|task| task.project }.sort_by {|k, _| k&.name.to_s }.each do |project, tasks|
       %tr
         %td= project&.name
+        %td= hbr(project&.description)
         %td= tasks.pluck(:estimate).compact.sum
         %td= tasks.map(&:actual).compact.sum.to_i

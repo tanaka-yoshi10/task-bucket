@@ -3,6 +3,7 @@
     %tr
       %th Name
       %th Color
+      %th Description
       %th Archive
       %th
       %th
@@ -17,6 +18,7 @@
             %span.badge.text-light{ style: "background-color:#{project.color}" }= project.color
           - else
             %span.badge.badge-secondary= project.color
+        %td= project.description
         %td= project.archive
         %td= link_to 'Show', project
         %td= link_to 'Edit', edit_project_path(project)
