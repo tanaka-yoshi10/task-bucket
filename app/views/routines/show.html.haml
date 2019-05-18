@@ -19,3 +19,6 @@
 = link_to 'Edit', edit_routine_path(@routine)
 \|
 = link_to 'Back', routines_path
+
+= render 'tasks/task_list', tasks: @tasks
+= paginate @tasks

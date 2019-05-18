@@ -2,7 +2,7 @@ class Projects::TasksController < ApplicationController
   before_action :set_project
 
   def index
-    @tasks = @project.tasks.includes(:project).order(start_at: :desc).order(:title).page(params[:page]).per(10)
+    @tasks = @project.tasks.includes(:project).newer.order(:title).page(params[:page])
   end
 
   private

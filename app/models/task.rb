@@ -15,6 +15,8 @@ class Task < ApplicationRecord
   scope :completed, -> { where.not(start_at: nil).where.not(end_at: nil) }
   scope :not_completed, -> { where(end_at: nil) }
 
+  scope :newer, -> { order(scheduled_on: :desc, start_at: :desc) }
+
   def actual
     return nil if start_at.blank? || end_at.blank?
 

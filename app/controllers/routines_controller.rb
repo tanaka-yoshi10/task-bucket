@@ -8,6 +8,7 @@ class RoutinesController < ApplicationController
 
   # GET /routines/1
   def show
+    @tasks = @routine.tasks.includes(:project).newer.order(:title).page(params[:page])
   end
 
   # GET /routines/new

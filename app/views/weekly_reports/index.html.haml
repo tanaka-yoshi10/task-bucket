@@ -8,36 +8,7 @@
       = submit_tag 'go', class: 'btn btn-primary'
     = link_to '>', weekly_reports_path(date: @date.since(1.week).to_date), class: 'btn'
 
-%table.table.table-responsive
-  %thead
-    %tr
-      %th 日付
-      %th 開始
-      %th 終了
-      %th 見積
-      %th{ colspan: 2 } 実績
-      %th Project
-      %th{ style: 'min-width: 150px' } タスク
-      %th{ style: 'min-width: 300px' } コメント
-      %th
-      %th
-      %th
-
-  %tbody
-    - @tasks.each do |task|
-      %tr
-        %td= task.scheduled_on
-        %td= task.start_at.present? ? l(task.start_at, format: :only_time) : ''
-        %td= task.end_at.present? ? l(task.end_at, format: :only_time) : ''
-        %td= task.estimate
-        %td= task.end_at.present? ? task.actual.to_i : ''
-        %td= task.actual&.negative? ? '' : '*' * (task.actual.to_i / 10 + 1)
-        %td= task.project&.name
-        %td= task.title
-        %td= hbr(task.comment)
-        %td= link_to 'Show', task
-        %td= link_to 'Edit', edit_task_path(task)
-        %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }
+= render 'tasks/task_list', tasks: @tasks
 
 %table.table.table-responsive
   %thead
