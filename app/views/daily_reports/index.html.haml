@@ -1,3 +1,5 @@
+- content_for :title do
+  DailyReport
 = form_tag daily_reports_path, method: :get, class: 'form-horizontal' do |f|
   .input-group.my-3
     = link_to '<', daily_reports_path(date: @date.yesterday.to_date), class: 'btn'
