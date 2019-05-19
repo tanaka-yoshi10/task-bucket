@@ -15,6 +15,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    session[:return_to] = request.referer
   end
 
   def create
@@ -39,7 +40,7 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
       respond_to do |format|
-        format.html { redirect_to tasks_url, notice: 'Task was successfully updated.' }
+        format.html { redirect_to(session.delete(:return_to) || task_path(@task), notice: 'Task was successfully updated.') }
         format.js { render :index }
       end
     else
