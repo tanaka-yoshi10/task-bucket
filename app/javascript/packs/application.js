@@ -13,6 +13,7 @@ import Rails from 'rails-ujs';
 Rails.start();
 Turbolinks.start()
 
+import './calendar'
 import './date_picker'
 import './time_picker'
 import './tasks'
