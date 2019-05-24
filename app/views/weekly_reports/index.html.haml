@@ -1,6 +1,6 @@
 - content_for :title do
   WeeklyReport
-= form_tag weekly_reports_path, method: :get, class: 'form-horizontal' do |f|
+= form_tag weekly_reports_path, method: :get, class: 'form-horizontal' do
   .input-group.my-3
     = link_to '<', weekly_reports_path(date: @date.ago(1.week).to_date), class: 'btn'
     .input-group-prepend

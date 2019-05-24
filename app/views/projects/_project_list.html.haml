@@ -6,7 +6,7 @@
       %th 見積
       %th 実績
   %tbody
-    - tasks.group_by {|task| task.project }.sort_by {|k, _| k&.name.to_s }.each do |project, tasks|
+    - tasks.group_by { |task| task.project }.sort_by { |k, _| k&.name.to_s }.each do |project, tasks|
       %tr
         %td
           - if project.present?

@@ -1,8 +1,9 @@
 %nav.navbar.navbar-expand-lg.navbar-light.bg-light
   %a.navbar-brand{ href: root_path } TaskBucket
-  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+  %button.navbar-toggler{ 'aria-controls': 'navbar-supported-content', 'aria-expanded': 'false', 'aria-label': 'Toggle navigation',
+    'data-target': '#navbar-supported-content', 'data-toggle': 'collapse', type: 'button' }
     %span.navbar-toggler-icon
-  #navbarSupportedContent.collapse.navbar-collapse
+  #navbar-supported-content.collapse.navbar-collapse
     %ul.navbar-nav.mr-auto
       %li.nav-item
         %a.nav-link{ href: tasks_path } DashBoard
@@ -17,9 +18,10 @@
       %li.nav-item
         %a.nav-link{ href: not_completed_tasks_path } 未完了タスク
       %li.nav-item.dropdown
-        %a#navbarDropdownMenuLink.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}= icon('fas', 'flask')
-        .dropdown-menu{"aria-labelledby" => "navbarDropdownMenuLink"}
-          %a.dropdown-item{ :href => dashboard_path } vue
+        %a#navbar-dropdown-menu-link.nav-link.dropdown-toggle{ 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown',
+          href: '#', role: 'button' }= icon('fas', 'flask')
+        .dropdown-menu{ 'aria-labelledby': 'navbar-dropdown-menu-link' }
+          %a.dropdown-item{ href: dashboard_path } vue
       - if user_signed_in?
         %li.nav-item
           = link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link'
