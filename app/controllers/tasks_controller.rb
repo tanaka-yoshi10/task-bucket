@@ -49,8 +49,11 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task.destroy
-    redirect_to tasks_url, notice: 'Task was successfully destroyed.'
+    @task.destroy!
+    respond_to do |format|
+      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.js
+    end
   end
 
   def start
