@@ -22,7 +22,10 @@
         %td= task.estimate
         %td= task.end_at.present? ? task.actual.to_i : ''
         %td= task.actual&.negative? ? '' : '*' * (task.actual.to_i / 10 + 1)
-        %td= task.project&.name
+        %td
+          - if task.project.present?
+            = link_to project_tasks_path(task.project) do
+              %span.badge.text-light{ style: "background-color:#{task.project.color}" }= task.project.name
         %td= task.title
         %td= hbr(task.comment)
         %td= link_to 'Show', task
