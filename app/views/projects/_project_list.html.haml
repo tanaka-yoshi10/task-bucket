@@ -8,7 +8,10 @@
   %tbody
     - tasks.group_by {|task| task.project }.sort_by {|k, _| k&.name.to_s }.each do |project, tasks|
       %tr
-        %td= project&.name
+        %td
+          - if project.present?
+            = link_to project_tasks_path(project) do
+              %span.badge.text-light{ style: "background-color:#{project.color}" }= project.name
         %td= hbr(project&.description)
         %td= tasks.pluck(:estimate).compact.sum
         %td= tasks.map(&:actual).compact.sum.to_i
