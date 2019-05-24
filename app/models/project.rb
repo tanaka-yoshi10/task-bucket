@@ -6,6 +6,7 @@ class Project < ApplicationRecord
   attribute :color, :string, default: '#6c757d'
 
   validates :name, presence: true
+  validates :color, presence: true
 
   scope :default_order, -> { order(:name, :id) }
   scope :active, -> { where(archive: false) }

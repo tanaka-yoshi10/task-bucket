@@ -18,10 +18,7 @@
     .my-2
       = task.title
       - if task.project.present?
-        - if task.project.color.present?
-          %span.badge.text-light{ style: "background-color:#{task.project.color}" }= task.project&.name
-        - else
-          %span.badge.badge-secondary= task.project&.name
+        %span.badge.text-light{ style: "background-color:#{task.project.color}" }= task.project&.name
       - if task.routine.present?
         = link_to icon('fas', 'redo'), edit_routine_path(task.routine), class: 'btn'
     .form-inline

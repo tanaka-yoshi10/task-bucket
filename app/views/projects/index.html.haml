@@ -17,10 +17,7 @@
       %tr
         %td= link_to project.name, project_tasks_path(project)
         %td
-          - if project.color.present?
-            %span.badge.text-light{ style: "background-color:#{project.color}" }= project.color
-          - else
-            %span.badge.badge-secondary= project.color
+          %span.badge.text-light{ style: "background-color:#{project.color}" }= project.color
         %td= project.description
         %td= project.archive
         %td= link_to 'Show', project
