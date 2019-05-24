@@ -2,8 +2,8 @@ class WeeklyReportsController < ApplicationController
   def index
     @date = begin
       Date.parse(params[:date].to_s)
-    rescue ArgumentError
-      Time.current.to_date
+            rescue ArgumentError
+              Time.current.to_date
     end
     @date = @date.beginning_of_week
 
