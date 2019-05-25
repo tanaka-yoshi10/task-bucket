@@ -7,6 +7,7 @@ document.addEventListener('turbolinks:load', () => {
     defaultView: 'agendaWeek',
     allDaySlot: false,
     events: events,
+    firstDay: 1,
   }
   $('#js-weekly-calendar').fullCalendar(options)
 })
