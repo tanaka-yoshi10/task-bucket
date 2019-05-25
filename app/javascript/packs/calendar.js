@@ -9,5 +9,9 @@ document.addEventListener('turbolinks:load', () => {
     events: events,
     firstDay: 1,
   }
+  const date = $('#js-weekly-calendar').data('default-date')
+  if (date) {
+    options.defaultDate = date
+  }
   $('#js-weekly-calendar').fullCalendar(options)
 })

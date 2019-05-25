@@ -11,5 +11,5 @@
     = link_to '>', weekly_reports_path(date: @date.since(1.week).to_date), class: 'btn'
 
 = render 'projects/project_list', tasks: @tasks
-#js-weekly-calendar{ data: { tasks: tasks_to_calendar_json(@tasks) } }
+#js-weekly-calendar{ data: { default_date: @date, tasks: tasks_to_calendar_json(@tasks.completed) } }
 = render 'tasks/task_list', tasks: @tasks
