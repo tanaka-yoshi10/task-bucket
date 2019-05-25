@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', () => {
     allDaySlot: false,
     events: $calendar.data('tasks'),
     firstDay: 1,
-    height: 'parent',
+    height: 'auto',
   }
   const date = $calendar.data('default-date')
   if (date) {
