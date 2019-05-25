@@ -13,6 +13,7 @@ document.addEventListener('turbolinks:load', () => {
     allDaySlot: false,
     events: events,
     firstDay: 1,
+    height: 'parent',
   }
   const date = $('#js-weekly-calendar').data('default-date')
   if (date) {
