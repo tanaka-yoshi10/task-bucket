@@ -12,6 +12,16 @@ document.addEventListener('turbolinks:load', () => {
     edit.removeClass('d-none')
   })
 
+  $(document).on('click', '.js-edit-task', (event) => {
+    const target = $(event.target)
+    const row = target.closest('.js-task-row')
+    const view = row.find('.js-task-view')
+    const edit = row.find('.js-task-edit')
+
+    view.addClass('d-none')
+    edit.removeClass('d-none')
+  })
+
   $(document).on('click', '.js-submit-task', (event) => {
     const target = $(event.target)
     const row = target.closest('.js-task-row')
