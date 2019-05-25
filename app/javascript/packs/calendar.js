@@ -4,6 +4,11 @@ import 'fullcalendar'
 document.addEventListener('turbolinks:load', () => {
   const events = $('#js-weekly-calendar').data('tasks')
   const options = {
+    header: {
+      left: '',
+      center: '',
+      right: '',
+    },
     defaultView: 'agendaWeek',
     allDaySlot: false,
     events: events,
