@@ -8,15 +8,17 @@
       %li.nav-item
         %a.nav-link{ href: tasks_path } DashBoard
       %li.nav-item
-        %a.nav-link{ href: projects_path } Projects
-      %li.nav-item
-        %a.nav-link{ href: routines_path } Routines
-      %li.nav-item
         %a.nav-link{ href: daily_reports_path } Daily Report
       %li.nav-item
         %a.nav-link{ href: weekly_reports_path } Weekly Report
       %li.nav-item
         %a.nav-link{ href: not_completed_tasks_path } 未完了タスク
+      %li.nav-item.dropdown
+        %a#navbar-dropdown-menu-link.nav-link.dropdown-toggle{ 'aria-expanded': 'false', 'aria-haspopup': 'true',
+          'data-toggle': 'dropdown', href: '#', role: 'button' } MANAGE
+        .dropdown-menu{ 'aria-labelledby': 'navbar-dropdown-menu-link' }
+          = link_to 'Projects', projects_path, class: 'dropdown-item'
+          = link_to 'Routines', routines_path, class: 'dropdown-item'
       %li.nav-item.dropdown
         %a#navbar-dropdown-menu-link.nav-link.dropdown-toggle{ 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown',
           href: '#', role: 'button' }= icon('fas', 'flask')
