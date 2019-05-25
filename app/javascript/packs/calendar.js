@@ -2,22 +2,22 @@ import $ from 'jquery'
 import 'fullcalendar'
 
 document.addEventListener('turbolinks:load', () => {
-  const events = $('#js-weekly-calendar').data('tasks')
+  const $calendar = $('#js-calendar')
   const options = {
     header: {
       left: '',
       center: '',
       right: '',
     },
-    defaultView: 'agendaWeek',
+    defaultView: $calendar.data('default-view'),
     allDaySlot: false,
-    events: events,
+    events: $calendar.data('tasks'),
     firstDay: 1,
     height: 'parent',
   }
-  const date = $('#js-weekly-calendar').data('default-date')
+  const date = $calendar.data('default-date')
   if (date) {
     options.defaultDate = date
   }
-  $('#js-weekly-calendar').fullCalendar(options)
+  $calendar.fullCalendar(options)
 })
