@@ -14,6 +14,8 @@ document.addEventListener('turbolinks:load', () => {
     events: $calendar.data('tasks'),
     firstDay: 1,
     height: 'auto',
+    slotLabelFormat: 'HH:mm',
+    timeFormat: 'HH:mm',
     eventRender: function(event, element) {
       $(element).tooltip({title: event.title});
     }
