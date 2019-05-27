@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       put :start
       put :complete
       put :clone
+      put :pause
     end
     collection do
       get :not_completed

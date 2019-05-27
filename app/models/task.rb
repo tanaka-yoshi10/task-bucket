@@ -28,6 +28,13 @@ class Task < ApplicationRecord
     user.tasks.create!(title: title, estimate: estimate, project: project)
   end
 
+  def pause!
+    Task.transaction do
+      user.tasks.create!(title: title, project: project)
+      self.update!(title: '[中断]' + title, end_at: Time.current)
+    end
+  end
+
   private
 
   def set_scheduled_on

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy start complete clone]
-  before_action :set_tasks, only: %i[index create update start complete clone]
+  before_action :set_task, only: %i[show edit update destroy start complete clone pause]
+  before_action :set_tasks, only: %i[index create update start complete clone pause]
 
   def index
     @tasks = current_user.tasks.where(scheduled_on: Time.current).order(start_at: :desc).order(:title).includes(:project)
