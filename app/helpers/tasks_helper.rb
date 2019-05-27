@@ -6,6 +6,7 @@ module TasksHelper
         start: task.start_at.iso8601,
         end: task.end_at.iso8601,
         backgroundColor: task.project&.color,
+        borderColor: task.project&.color,
         textColor: 'white',
       }
     end
