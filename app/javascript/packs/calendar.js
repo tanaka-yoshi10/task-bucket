@@ -14,6 +14,9 @@ document.addEventListener('turbolinks:load', () => {
     events: $calendar.data('tasks'),
     firstDay: 1,
     height: 'auto',
+    eventRender: function(event, element) {
+      $(element).tooltip({title: event.title});
+    }
   }
   const date = $calendar.data('default-date')
   if (date) {
