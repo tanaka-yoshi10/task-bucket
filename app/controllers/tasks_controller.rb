@@ -66,6 +66,11 @@ class TasksController < ApplicationController
     render :index
   end
 
+  def pause
+    @task.pause!
+    render :index
+  end
+
   def clone
     @task.clone!
     render :index
