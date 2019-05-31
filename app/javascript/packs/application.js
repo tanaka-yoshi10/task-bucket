@@ -6,6 +6,7 @@ window.$ = jQuery;
 
 import 'popper.js';
 import 'bootstrap';
+import '../javascripts/vue'
 import '@fortawesome/fontawesome-free/js/all'
 import Turbolinks from 'turbolinks';
 

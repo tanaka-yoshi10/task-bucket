@@ -6830,6 +6830,11 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-custom-element@^3.2.7:
+  version "3.2.7"
+  resolved "https://registry.yarnpkg.com/vue-custom-element/-/vue-custom-element-3.2.7.tgz#ee1fd9d5e720e8c89bf94af6f845ce4abaac849a"
+  integrity sha512-jBtPXqm5WuIovoWsuoyYG+n8QGfhPOEyMuVVdWOydarcaU7YlsWfAt1lghi66ohJl4lMjyF71doTX5DHVBuUvg==
+
 vue-hot-reload-api@^2.3.0:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.3.tgz#2756f46cb3258054c5f4723de8ae7e87302a1ccf"
