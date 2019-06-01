@@ -2,13 +2,37 @@
 残り #{estimate}分
 終了予定 #{l(Time.current.since(estimate.minutes), format: :only_time)}
 
-%ul.list-group
-  - @tasks.doing.each do |task|
-    .js-task-row{ id: "js-task-#{task.id}" }
-      = render 'task', task: task
-  - @tasks.not_started.each do |task|
-    .js-task-row{ id: "js-task-#{task.id}" }
-      = render 'task', task: task
-  - @tasks.completed.each do |task|
-    .js-task-row{ id: "js-task-#{task.id}" }
-      = render 'task', task: task
+#accordion.accordion{"aria-multiselectable" => "true", :role => "tablist"}
+  .card
+    #headingOne.card-header{:role => "tab"}
+      %h5.mb-0
+        %a.text-body{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-toggle" => "collapse", :href => "#collapseOne", :role => "button"}
+          実行中
+    #collapseOne.collapse.show{"aria-labelledby" => "headingOne", :role => "tabpanel"}
+      .card-body
+        %ul.list-group
+          - @tasks.doing.each do |task|
+            .js-task-row{ id: "js-task-#{task.id}" }
+              = render 'task', task: task
+  .card
+    #headingTwo.card-header{:role => "tab"}
+      %h5.mb-0
+        %a.collapsed.text-body{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseTwo", :role => "button"}
+          未着手
+    #collapseTwo.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+      .card-body
+        %ul.list-group
+          - @tasks.not_started.each do |task|
+            .js-task-row{ id: "js-task-#{task.id}" }
+              = render 'task', task: task
+  .card
+    #headingThree.card-header{:role => "tab"}
+      %h5.mb-0
+        %a.collapsed.text-body{"aria-controls" => "collapseThree", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseThree", :role => "button"}
+          完了
+    #collapseThree.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
+      .card-body
+        %ul.list-group
+          - @tasks.completed.each do |task|
+            .js-task-row{ id: "js-task-#{task.id}" }
+              = render 'task', task: task
