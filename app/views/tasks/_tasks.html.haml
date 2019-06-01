@@ -1,6 +1,36 @@
 - estimate = @tasks.not_completed.sum(:estimate)
-残り #{estimate}分
-終了予定 #{l(Time.current.since(estimate.minutes), format: :only_time)}
+- completed = @tasks.completed.sum(&:actual)
+
+.d-flex.my-3
+  %table.table-sm.table-bordered
+    %thead
+      %tr
+        %th 全て
+        %th 完了
+        %th 残り
+    %tbody
+      %tr
+        %td= @tasks.count
+        %td= @tasks.completed.count
+        %td= @tasks.not_completed.count
+      %tr
+        %td
+          = @tasks.sum(:estimate)
+          分
+        %td
+          = completed
+          分
+        %td
+          = estimate
+          分
+  .mx-4
+    %table.table-sm.table-bordered
+      %thead
+        %tr
+          %th 終了予定
+      %tbody
+        %tr
+          %td= l(Time.current.since(estimate.minutes), format: :only_time)
 
 #accordion.accordion{"aria-multiselectable" => "true", :role => "tablist"}
   .card
