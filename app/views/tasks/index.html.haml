@@ -13,6 +13,14 @@
     = f.button :submit, '開始', class: 'btn btn-primary'
     = f.button :submit, '直前のタスクの終了時刻', class: 'btn btn-primary'
     = f.button :submit, '登録', class: 'btn btn-secondary'
+    = link_to icon('fas', 'chevron-right'), '#js-modal-shortcuts', class: 'btn btn-light', data: { toggle: 'modal' }
+
+#js-modal-shortcuts.modal.fade{ tabindex: '-1', role: 'dialog' }
+  .modal-dialog
+    .modal-content
+      .modal-body
+        - current_user.shortcuts.default_order.each do |shortcut|
+          = link_to shortcut.title, start_shortcut_path(shortcut), method: :put, remote: true, class: 'btn btn-secondary'
 
 #js-task-list
   = render 'tasks', tasks: @tasks

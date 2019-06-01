@@ -15,13 +15,13 @@
         %td= @tasks.not_completed.count
       %tr
         %td
-          = @tasks.sum(:estimate)
+          = @tasks.sum(:estimate).to_i
           分
         %td
-          = completed
+          = completed.to_i
           分
         %td
-          = estimate
+          = estimate.to_i
           分
   .mx-4
     %table.table-sm.table-bordered
@@ -43,7 +43,7 @@
         %ul.list-group
           - @tasks.doing.each do |task|
             .js-task-row{ id: "js-task-#{task.id}" }
-              = render 'task', task: task
+              = render 'tasks/task', task: task
   .card
     #headingTwo.card-header{:role => "tab"}
       %h5.mb-0
@@ -54,7 +54,7 @@
         %ul.list-group
           - @tasks.not_started.each do |task|
             .js-task-row{ id: "js-task-#{task.id}" }
-              = render 'task', task: task
+              = render 'tasks/task', task: task
   .card
     #headingThree.card-header{:role => "tab"}
       %h5.mb-0
@@ -65,4 +65,4 @@
         %ul.list-group
           - @tasks.completed.each do |task|
             .js-task-row{ id: "js-task-#{task.id}" }
-              = render 'task', task: task
+              = render 'tasks/task', task: task

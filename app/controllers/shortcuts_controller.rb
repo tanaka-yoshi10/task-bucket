@@ -1,5 +1,5 @@
 class ShortcutsController < ApplicationController
-  before_action :set_shortcut, only: %i[show edit update destroy]
+  before_action :set_shortcut, only: %i[show edit update destroy start]
 
   def index
     @shortcuts = current_user.shortcuts.default_order
@@ -36,6 +36,11 @@ class ShortcutsController < ApplicationController
   def destroy
     @shortcut.destroy
     redirect_to shortcuts_url, notice: 'Shortcut was successfully destroyed.'
+  end
+
+  def start
+    current_user.tasks.create!(title: @shortcut.title, project: @shortcut.project , start_at: Time.current)
+    @tasks = current_user.tasks.where(scheduled_on: Time.current).order(start_at: :desc).order(:title).includes(:project)
   end
 
   private
