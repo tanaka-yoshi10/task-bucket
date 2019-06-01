@@ -5,7 +5,7 @@
 
   .form-inputs
     = f.input :title
-    = f.association :project
+    = f.association :project, collection: current_user.projects.active.default_order
     = f.input :position
 
   .form-actions
