@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shortcuts
   resources :routines
   devise_for :users
   root to: 'tasks#index'

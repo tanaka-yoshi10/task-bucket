@@ -19,6 +19,7 @@
         .dropdown-menu{ 'aria-labelledby': 'navbar-dropdown-menu-link' }
           = link_to 'Projects', projects_path, class: 'dropdown-item'
           = link_to 'Routines', routines_path, class: 'dropdown-item'
+          = link_to 'Shortcuts', shortcuts_path, class: 'dropdown-item'
       %li.nav-item.dropdown
         %a#navbar-dropdown-menu-link.nav-link.dropdown-toggle{ 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown',
           href: '#', role: 'button' }= icon('fas', 'flask')

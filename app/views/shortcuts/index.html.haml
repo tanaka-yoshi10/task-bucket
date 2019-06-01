@@ -1,0 +1,25 @@
+%h1 Listing shortcuts
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Project
+      %th Position
+      %th
+      %th
+      %th
+
+  %tbody
+    - @shortcuts.each do |shortcut|
+      %tr
+        %td= shortcut.title
+        %td= shortcut.project&.name
+        %td= shortcut.position
+        %td= link_to 'Show', shortcut
+        %td= link_to 'Edit', edit_shortcut_path(shortcut)
+        %td= link_to 'Destroy', shortcut, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Shortcut', new_shortcut_path

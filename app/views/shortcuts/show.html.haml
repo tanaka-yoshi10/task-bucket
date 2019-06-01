@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @shortcut.title
+%p
+  %b Project:
+  = @shortcut.project
+%p
+  %b Position:
+  = @shortcut.position
+
+= link_to 'Edit', edit_shortcut_path(@shortcut)
+\|
+= link_to 'Back', shortcuts_path
