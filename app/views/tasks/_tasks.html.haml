@@ -17,9 +17,9 @@
   .card
     #headingTwo.card-header{:role => "tab"}
       %h5.mb-0
-        %a.collapsed.text-body{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseTwo", :role => "button"}
+        %a.text-body{"aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-toggle" => "collapse", :href => "#collapseTwo", :role => "button"}
           未着手
-    #collapseTwo.collapse{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
+    #collapseTwo.collapse.show{"aria-labelledby" => "headingTwo", :role => "tabpanel"}
       .card-body
         %ul.list-group
           - @tasks.not_started.each do |task|
@@ -28,9 +28,9 @@
   .card
     #headingThree.card-header{:role => "tab"}
       %h5.mb-0
-        %a.collapsed.text-body{"aria-controls" => "collapseThree", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseThree", :role => "button"}
+        %a.text-body{"aria-controls" => "collapseThree", "aria-expanded" => "true", "data-toggle" => "collapse", :href => "#collapseThree", :role => "button"}
           完了
-    #collapseThree.collapse{"aria-labelledby" => "headingThree", :role => "tabpanel"}
+    #collapseThree.collapse.show{"aria-labelledby" => "headingThree", :role => "tabpanel"}
       .card-body
         %ul.list-group
           - @tasks.completed.each do |task|
