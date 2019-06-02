@@ -15,7 +15,7 @@
         %td= @tasks.not_completed.count
       %tr
         %td
-          = @tasks.sum(:estimate).to_i
+          = (estimate + completed).to_i
           分
         %td
           = completed.to_i
