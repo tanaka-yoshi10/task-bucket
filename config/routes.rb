@@ -30,6 +30,9 @@ Rails.application.routes.draw do
         put :complete
         put :comment
       end
+      collection do
+        get :doing
+      end
     end
     resources :shortcuts, only: %i(index) do
       member do
