@@ -24,4 +24,18 @@ Rails.application.routes.draw do
   resources :daily_reports, only: %i(index)
   resources :weekly_reports, only: %i(index)
   resource :dashboard
+  namespace :api do
+    resources :tasks, only: %i(index) do
+      member do
+        put :complete
+        put :comment
+      end
+    end
+    resources :shortcuts, only: %i(index) do
+      member do
+        put :start
+      end
+    end
+
+  end
 end
