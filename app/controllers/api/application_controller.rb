@@ -1,8 +1,8 @@
 class Api::ApplicationController < ActionController::Base
-  private
+  before_action :doorkeeper_authorize!
+  helper_method :current_user
 
   def current_user
-    # FIXME: 仮実装
-    @current_user ||= User.first
+    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
   end
 end
