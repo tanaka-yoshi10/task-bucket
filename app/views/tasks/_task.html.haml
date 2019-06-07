@@ -35,7 +35,14 @@
     .my-2= hbr(task.comment)
   .my-2
     - if task.start_at.blank?
-      = link_to icon('fas', 'play'), start_task_path(task), method: :put, class: 'mx-2 btn btn-success', remote: true
+      .btn-group
+        = link_to icon('fas', 'play'), start_task_path(task), method: :put, class: 'btn btn-success', remote: true
+        %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+          %span.caret
+          %span.sr-only Toggle Dropdown
+        %ul.dropdown-menu
+          %li
+            = link_to '直前のタスクの終了時刻から開始', start_task_path(task, from_just_before: true), method: :put, remote: true
     - elsif task.end_at.blank?
       = link_to icon('fas', 'stop'), complete_task_path(task), method: :put, class: 'mx-2 btn btn-danger', remote: true
       = link_to icon('fas', 'pause'), pause_task_path(task), method: :put, class: 'mx-2 btn', remote: true

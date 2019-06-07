@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def admin?
     id == 1
   end
+
+  def last_end_at
+    tasks.order(:end_at).pluck(:end_at).compact.last
+  end
 end

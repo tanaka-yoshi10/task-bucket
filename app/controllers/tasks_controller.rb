@@ -23,7 +23,7 @@ class TasksController < ApplicationController
     if params[:commit] == '開始'
       @task.start_at = Time.current
     elsif params[:commit] == '直前のタスクの終了時刻'
-      @task.start_at = current_user.tasks.order(:end_at).pluck(:end_at).compact.last
+      @task.start_at = current_user.last_end_at
     end
 
     if @task.save
@@ -57,7 +57,11 @@ class TasksController < ApplicationController
   end
 
   def start
-    @task.update!(start_at: Time.current)
+    if params[:from_just_before].present?
+      @task.update!(start_at: current_user.last_end_at)
+    else
+      @task.update!(start_at: Time.current)
+    end
     render :index
   end
 
