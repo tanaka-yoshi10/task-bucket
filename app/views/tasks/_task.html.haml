@@ -20,7 +20,7 @@
       - if task.project.present?
         %span.badge.text-light{ style: "background-color:#{task.project.color}" }= task.project&.name
       - if task.routine.present?
-        = link_to icon('fas', 'redo'), edit_routine_path(task.routine), class: 'btn'
+        = link_to icon('fas', 'redo'), routine_path(task.routine), class: 'btn'
     .form-inline
       = task.start_at.present? ? l(task.start_at, format: :only_time) : nil
       - if task.end_at.present?
