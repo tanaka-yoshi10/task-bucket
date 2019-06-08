@@ -4,6 +4,9 @@ class Routine < ApplicationRecord
 
   has_many :tasks, dependent: :nullify
 
+  validates :recurrence, presence: true
+  attribute :recurrence, :string, default: -> { 'FREQ=DAILY' }
+
   def self.create_repeat_tasks!
     current = Time.current
     Routine.transaction do
