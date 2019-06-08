@@ -18,8 +18,8 @@
     - @tasks.each do |task|
       %tr{ id: "js-task-#{task.id}" }
         %td= task.scheduled_on
-        %td= task.start_at.present? ? l(task.start_at, format: :only_time) : ''
-        %td= task.end_at.present? ? l(task.end_at, format: :only_time) : ''
+        %td= nl(task.start_at, format: :only_time)
+        %td= nl(task.end_at, format: :only_time)
         %td= task.estimate
         %td= task.project&.name
         %td
