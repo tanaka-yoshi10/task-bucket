@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
   resources :daily_reports, only: %i(index)
   resources :weekly_reports, only: %i(index)
+  resources :future_tasks, only: %i(index new create)
   resource :dashboard
   namespace :api do
     resources :tasks, only: %i(index) do
@@ -40,6 +41,5 @@ Rails.application.routes.draw do
         put :start
       end
     end
-
   end
 end

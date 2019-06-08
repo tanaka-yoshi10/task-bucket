@@ -1,0 +1,16 @@
+.card.mx-auto.mt-5{ style: 'max-width: 25rem' }
+  .card-header タスクを追加
+  .card-body
+    = simple_form_for(@task, url: future_tasks_path) do |f|
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+      .form-inputs
+        = f.input :title
+        = f.input :scheduled_on, html5: true
+        = f.association :project, collection: current_user.projects.active.default_order
+        = f.input :estimate
+
+      .form-actions
+        = f.button :submit, class: 'btn btn-primary'
+        = link_to 'Back', future_tasks_path, class: 'btn'
