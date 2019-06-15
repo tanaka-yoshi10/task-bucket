@@ -3,8 +3,8 @@
     %tr
       %th プロジェクト
       %th 説明
-      %th 見積(分)
-      %th 実績(分)
+      %th 見積(h)
+      %th 実績(h)
   %tbody
     - tasks.group_by { |task| task.project }.sort_by { |k, _| k&.name.to_s }.each do |project, tasks|
       %tr
@@ -13,5 +13,5 @@
             = link_to project_tasks_path(project) do
               %span.badge.text-light{ style: "background-color:#{project.color}" }= project.name
         %td= hbr(project&.description)
-        %td= tasks.pluck(:estimate).compact.sum
-        %td= tasks.map(&:actual).compact.sum.to_i
+        %td= minute_to_hour tasks.pluck(:estimate).compact.sum
+        %td= minute_to_hour tasks.map(&:actual).compact.sum
