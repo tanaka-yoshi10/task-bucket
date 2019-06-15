@@ -8,4 +8,8 @@ module ApplicationHelper
     localize(*args) if args&.first.present?
   end
   alias nl null_check_localization
+
+  def minute_to_hour(minutes)
+    (minutes / 60.0).round(1)
+  end
 end

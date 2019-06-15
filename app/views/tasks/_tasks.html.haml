@@ -15,14 +15,14 @@
         %td= @tasks.not_completed.count
       %tr
         %td
-          = (estimate + completed).to_i
-          分
+          = minute_to_hour estimate + completed
+          h
         %td
-          = completed.to_i
-          分
+          = minute_to_hour completed
+          h
         %td
-          = estimate.to_i
-          分
+          = minute_to_hour estimate
+          h
   .mx-4
     %table.table-sm.table-bordered
       %thead
