@@ -19,6 +19,6 @@
         %span.sr-only Toggle Dropdown
       %ul.p-2.dropdown-menu
         - current_user.shortcuts.default_order.each do |shortcut|
-          %li.my-1= link_to shortcut.title, start_shortcut_path(shortcut), method: :put, remote: true, class: 'btn btn-secondary'
+          %li.dropdown-item= link_to shortcut.title, start_shortcut_path(shortcut), method: :put, remote: true, class: 'btn btn-secondary'
 #js-task-list
   = render 'tasks', tasks: @tasks
