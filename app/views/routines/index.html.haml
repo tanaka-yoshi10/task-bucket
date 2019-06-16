@@ -6,6 +6,7 @@
       %th Title
       %th Estimate
       %th Project
+      %th Active
       %th
       %th
       %th
@@ -16,6 +17,7 @@
         %td= routine.title
         %td= routine.estimate
         %td= routine.project&.name
+        %td= routine.active
         %td= link_to 'Show', routine
         %td= link_to 'Edit', edit_routine_path(routine)
         %td= link_to 'Destroy', routine, :method => :delete, :data => { :confirm => 'Are you sure?' }

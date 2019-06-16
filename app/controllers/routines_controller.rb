@@ -55,6 +55,6 @@ class RoutinesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def routine_params
-    params.require(:routine).permit(:recurrence, :title, :estimate, :project_id)
+    params.require(:routine).permit(:recurrence, :title, :estimate, :project_id, :active)
   end
 end

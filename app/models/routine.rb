@@ -4,13 +4,15 @@ class Routine < ApplicationRecord
 
   has_many :tasks, dependent: :nullify
 
-  validates :recurrence, presence: true
-  attribute :recurrence, :string, default: -> { 'FREQ=DAILY' }
+  # validates :recurrence, presence: true
+  # attribute :recurrence, :string, default: -> { 'FREQ=DAILY' }
+
+  scope :active, -> { where(active: true) }
 
   def self.create_repeat_tasks!
     current = Time.current
     Routine.transaction do
-      Routine.find_each do |routine|
+      Routine.active.find_each do |routine|
         next if routine.tasks.where(scheduled_on: current).exists?
 
         routine.tasks.create!(
