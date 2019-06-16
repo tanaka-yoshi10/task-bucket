@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       put :complete
       put :clone
       put :pause
+      put :postpone
     end
     collection do
       get :not_completed

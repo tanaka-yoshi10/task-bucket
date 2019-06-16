@@ -36,6 +36,10 @@ class Task < ApplicationRecord
     end
   end
 
+  def postpone!
+    update!(scheduled_on: Date.current.tomorrow)
+  end
+
   private
 
   def set_scheduled_on

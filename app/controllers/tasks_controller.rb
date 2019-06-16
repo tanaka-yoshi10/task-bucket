@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy start complete clone pause]
-  before_action :set_tasks, only: %i[index create update start complete clone pause]
+  before_action :set_task, only: %i[show edit update destroy start complete clone pause postpone]
+  before_action :set_tasks, only: %i[index create update start complete clone pause postpone]
 
   def index
     @tasks = current_user.tasks.where(scheduled_on: Time.current).order(start_at: :desc).order(:title).includes(:project)
@@ -82,6 +82,11 @@ class TasksController < ApplicationController
 
   def not_completed
     @tasks = current_user.tasks.not_completed.order(:scheduled_on, :title)
+  end
+
+  def postpone
+    @task.postpone!
+    render :index
   end
 
   private
