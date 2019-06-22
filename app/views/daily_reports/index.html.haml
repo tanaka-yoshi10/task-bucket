@@ -11,8 +11,8 @@
     = link_to '>', daily_reports_path(date: @date.tomorrow.to_date), class: 'btn'
 
 .row
-  .col-6
+  .col-lg-6
     = render 'projects/project_list', tasks: @tasks
-  .col-6
+  .col-lg-6
     #js-calendar{ data: { default_view: 'agendaDay', default_date: @date, tasks: tasks_to_calendar_json(@tasks.completed) } }
 = render 'tasks/task_list', tasks: @tasks

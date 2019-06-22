@@ -13,7 +13,7 @@ document.addEventListener('turbolinks:load', () => {
     allDaySlot: false,
     events: $calendar.data('tasks'),
     firstDay: 1,
-    height: 'auto',
+    height: '650',
     slotLabelFormat: 'HH:mm',
     timeFormat: 'HH:mm',
     eventRender: function(event, element) {
