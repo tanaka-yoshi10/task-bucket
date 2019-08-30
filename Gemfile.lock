@@ -268,11 +268,11 @@ GEM
       execjs (>= 0.3.0, < 3)
     warden (1.2.8)
       rack (>= 2.0.6)
-    web-console (3.7.0)
-      actionview (>= 5.0)
-      activemodel (>= 5.0)
+    web-console (4.0.1)
+      actionview (>= 6.0.0)
+      activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
-      railties (>= 5.0)
+      railties (>= 6.0.0)
     webdrivers (4.1.2)
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
@@ -306,7 +306,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener_web
-  listen (>= 3.0.5, < 3.2)
+  listen
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 6.0.0)
@@ -317,9 +317,9 @@ DEPENDENCIES
   simple_form
   simplecov
   spring
-  spring-watcher-listen (~> 2.0.0)
+  spring-watcher-listen
   uglifier
-  web-console (>= 3.3.0)
+  web-console
   webdrivers
   webpacker
 
