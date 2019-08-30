@@ -3,7 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'rails', '~> 5.2.3'
+gem 'rails', '~> 6.0.0'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
@@ -30,10 +30,10 @@ end
 
 group :development do
   gem 'letter_opener_web'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'spring-watcher-listen'
+  gem 'web-console'
 end
 
 group :test do
