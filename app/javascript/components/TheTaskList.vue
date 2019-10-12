@@ -28,10 +28,10 @@
         <div class="card-body">
           <ul class="list-group">
             <li
-              class="list-group-item js-task-view my-2"
               v-for="(task, index) in completedTasks"
               :id="'row_task_' + task.id"
               :key="index"
+              class="list-group-item js-task-view my-2"
             >
               <Task
                 :task="task"
