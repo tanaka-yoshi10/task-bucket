@@ -40,6 +40,10 @@ class Task < ApplicationRecord
     update!(scheduled_on: Date.current.tomorrow)
   end
 
+  def completed?
+    start_at.present? && end_at.present?
+  end
+
   def self.group_by_project
     all.group_by { |task| task.project }.sort_by { |k, _| k&.name.to_s }
   end
