@@ -13,7 +13,7 @@
           〜
           {{ task.end_at | timeFormat }}
           実績:
-          14
+          {{ actual }}
         </div>
         <div class="my-2"></div>
       </div>
@@ -37,6 +37,9 @@ export default {
     }
   },
   computed: {
+    actual() {
+      return Math.round((parseISO(this.task.end_at) - parseISO(this.task.start_at)) / 1000 / 60)
+    }
   },
   mounted() {
     console.log(formatDate(parseISO(this.task.start_at), 'hh:mm'))
