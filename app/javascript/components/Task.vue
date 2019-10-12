@@ -107,11 +107,17 @@
           {{ task.title }}
         </div>
         <div class="form-inline">
-          {{ task.start_at | timeFormat }}
-          〜
-          {{ task.end_at | timeFormat }}
-          実績:
-          {{ actual }}
+          <span v-if="task.start_at">
+            {{ task.start_at | timeFormat }}
+          </span>
+          <span v-if="task.end_at">
+            〜
+            {{ task.end_at | timeFormat }}
+          </span>
+          <span v-if="task.completed">
+            実績:
+            {{ actual }}
+          </span>
         </div>
         <div class="my-2">
           <a
