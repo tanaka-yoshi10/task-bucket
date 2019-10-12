@@ -48,6 +48,7 @@
 import axios from 'axios'
 import { csrfToken } from '@rails/ujs'
 import Task from './Task.vue'
+import { tasksPath } from '../javascripts/rails-routes'
 
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
@@ -71,12 +72,11 @@ export default {
   },
   methods: {
     fetchTasks() {
-      axios.get('/tasks.json').then((response) => { // TODO: js_rails_routesが使えそう
+      axios.get(tasksPath({ format: 'json' })).then((response) => {
         for (let i = 0; i < response.data.tasks.length; i++) {
           this.tasks.push(response.data.tasks[i])
         }
       }, (error) => {
-        console.log(error)
       })
     },
   },

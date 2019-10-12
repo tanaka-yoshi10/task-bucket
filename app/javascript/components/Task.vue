@@ -208,7 +208,6 @@ export default {
     },
   },
   mounted() {
-    console.log(formatDate(parseISO(this.task.start_at), 'hh:mm'))
   },
   methods: {
     toggle() {
