@@ -33,6 +33,9 @@
               :key="index"
               class="list-group-item js-task-view my-2"
             >
+              <Task
+                :task="task"
+              />
               <div class="js-task-toggle-view">
                 <div class="my-2">
                   {{ task.title }}
@@ -128,10 +131,12 @@
 <script>
 import axios from 'axios'
 import { csrfToken } from '@rails/ujs'
+import Task from './Task.vue'
 
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
 export default {
+  components: { Task },
   data() {
     return {
       tasks: [],
