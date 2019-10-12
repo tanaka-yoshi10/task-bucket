@@ -27,7 +27,12 @@
       >
         <div class="card-body">
           <ul class="list-group">
-            <li v-for="task in completedTasks" :id="'row_task_' + task.id" class="list-group-item js-task-view my-2">
+            <li
+              v-for="(task, index) in completedTasks"
+              :id="'row_task_' + task.id"
+              :key="index"
+              class="list-group-item js-task-view my-2"
+            >
               <div class="js-task-toggle-view">
                 <div class="my-2">
                   {{ task.title }}
@@ -133,36 +138,25 @@ export default {
       newTask: '',
     }
   },
-  mounted() {
-    this.fetchTasks()
-  },
   computed: {
     completedTasks() {
-      let filteredStories = this.tasks.filter((task) => {
-        return task.completed
-      })
-      let orderedStories = filteredStories.sort((a, b) => {
-        return b.created_at - a.created_at;
-      })
-      return orderedStories;
+      const filteredStories = this.tasks.filter((task) => task.completed)
+      const orderedStories = filteredStories.sort((a, b) => b.created_at - a.created_at)
+      return orderedStories
     },
+  },
+  mounted() {
+    this.fetchTasks()
   },
   methods: {
     fetchTasks() {
       axios.get('/tasks.json').then((response) => { // TODO: js_rails_routesが使えそう
         for (let i = 0; i < response.data.tasks.length; i++) {
-          console.log(response.data.tasks[i])
           this.tasks.push(response.data.tasks[i])
         }
       }, (error) => {
         console.log(error)
       })
-    },
-    createTask() {
-    },
-    doneTask(task_id) {
-    },
-    moveFinishedTask(task_id) {
     },
   },
 }
