@@ -1,0 +1,18 @@
+extends:
+  - airbnb-base
+  - plugin:vue/recommended
+
+parserOptions:
+  ecmaVersion: 2018
+
+rules:
+  semi:
+    - error
+    - never
+  no-alert:
+    - off
+  max-len:
+    - off
+  vue/max-attributes-per-line:
+    - 2
+    - singleline: 3
