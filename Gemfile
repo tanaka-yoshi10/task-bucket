@@ -29,6 +29,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'js_rails_routes'
   gem 'letter_opener_web'
   gem 'listen'
   gem 'spring'

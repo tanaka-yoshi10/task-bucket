@@ -112,6 +112,8 @@ GEM
       concurrent-ruby (~> 1.0)
     jb (0.7.0)
       multi_json
+    js_rails_routes (0.10.0)
+      rails (>= 3.2)
     json (2.2.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
@@ -297,6 +299,7 @@ DEPENDENCIES
   foreman
   hamlit-rails
   jb
+  js_rails_routes
   kaminari
   launchy
   letter_opener_web
