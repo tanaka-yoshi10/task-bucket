@@ -1,3 +1,13 @@
 {
-  tasks: @tasks.map { |task| { id: task.id, title: task.title, created_at: task.created_at, updated_at: task.updated_at, completed: task.completed? } },
+  tasks: @tasks.map do |task|
+    {
+      id: task.id,
+      title: task.title,
+      created_at: task.created_at,
+      updated_at: task.updated_at,
+      start_at: task.start_at,
+      end_at: task.end_at,
+      completed: task.completed?,
+    }
+  end
 }

@@ -8,6 +8,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "bootstrap-datepicker": "^1.8.0",
+    "date-fns": "^2.4.1",
     "fullcalendar": "^3.10.0",
     "jquery": "^3.4.0",
     "moment": "^2.24.0",
