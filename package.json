@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
+    "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^4.0.2",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
@@ -11,7 +12,6 @@
     "jquery": "^3.4.0",
     "moment": "^2.24.0",
     "popper.js": "^1.15.0",
-    "rails-ujs": "^5.2.3",
     "timepicker": "^1.11.14",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.10",

@@ -6,7 +6,7 @@ import '../javascripts/vue'
 import '@fortawesome/fontawesome-free/js/all'
 import Turbolinks from 'turbolinks'
 
-import Rails from 'rails-ujs'
+import Rails from '@rails/ujs'
 
 import './calendar'
 import './date_picker'
