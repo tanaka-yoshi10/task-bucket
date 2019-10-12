@@ -32,4 +32,3 @@ document.addEventListener('turbolinks:load', () => {
     edit.addClass('d-none')
   })
 })
-

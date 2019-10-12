@@ -16,9 +16,9 @@ document.addEventListener('turbolinks:load', () => {
     height: '650',
     slotLabelFormat: 'HH:mm',
     timeFormat: 'HH:mm',
-    eventRender: function(event, element) {
-      $(element).tooltip({title: event.title});
-    }
+    eventRender(event, element) {
+      $(element).tooltip({ title: event.title })
+    },
   }
   const date = $calendar.data('default-date')
   if (date) {

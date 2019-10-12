@@ -5,4 +5,3 @@ import TheTaskList from '../components/TheTaskList.vue'
 Vue.use(vueCustomElement)
 
 Vue.customElement('the-task-list', TheTaskList)
-
