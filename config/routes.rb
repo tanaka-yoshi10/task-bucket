@@ -27,7 +27,14 @@ Rails.application.routes.draw do
   resources :weekly_reports, only: %i(index)
   resources :future_tasks, only: %i(index new create)
   resource :dashboard
-  namespace :api do
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :tasks, only: %i() do
+        member do
+          put :complete
+        end
+      end
+    end
     resources :tasks, only: %i(index) do
       member do
         put :complete

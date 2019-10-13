@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div @click="toggle">
-      <div v-if="editable">
+    <div>
+      <div v-if="editable" @click="toggle">
         <form
           id="edit_task_157"
           class="simple_form edit_task"
@@ -103,7 +103,7 @@
         </form>
       </div>
       <div v-else>
-        <div class="my-2">
+        <div class="my-2" @click="toggle">
           {{ task.title }}
         </div>
         <div class="form-inline">
@@ -120,23 +120,21 @@
           </span>
         </div>
         <div class="my-2" v-if="task.start_at && !task.end_at">
+          <button
+            class="mx-2 btn btn-danger"
+            @click="complete(task)"
+          >
+            <i class="fas fa-stop"></i>
+          </button>
           <a
             class="mx-2 btn btn-danger"
             data-remote="true"
             rel="nofollow"
             data-method="put"
             href="/tasks/157/complete"
-          ><svg
-            class="svg-inline--fa fa-stop fa-w-14"
-            aria-hidden="true"
-            focusable="false"
-            data-prefix="fas"
-            data-icon="stop"
-            role="img"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 448 512"
-            data-fa-i2svg=""
-          ><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z" /></svg><!-- <i class="fas fa-stop"></i> --></a>
+          >
+            <i class="fas fa-stop"></i>
+          </a>
           <a
             class="mx-2 btn"
             data-remote="true"
@@ -189,7 +187,12 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { csrfToken } from '@rails/ujs'
 import { format as formatDate, parseISO } from 'date-fns'
+import { completeApiV1TaskPath } from '../javascripts/rails-routes'
+
+axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
 export default {
   filters: {
@@ -219,6 +222,13 @@ export default {
     toggle() {
       this.editable = !this.editable
     },
+    complete(task) {
+      console.log(`complete ${completeApiV1TaskPath({ id: task.id })}`)
+      axios.put(completeApiV1TaskPath({ id: task.id })).then((response) => {
+        console.log(response)
+      }, (error) => {
+      })
+    }
   },
 }
 </script>
