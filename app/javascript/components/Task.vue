@@ -119,30 +119,30 @@
             {{ actual }}
           </span>
         </div>
-        <div class="my-2" v-if="task.start_at && !task.end_at">
+        <div v-if="task.start_at && !task.end_at" class="my-2">
           <button
             class="mx-2 btn btn-danger"
             @click="complete(task)"
           >
-            <i class="fas fa-stop"></i>
+            <i class="fas fa-stop" />
           </button>
           <button
             class="mx-2 btn"
             @click="pause(task)"
           >
-            <i class="fas fa-pause"></i>
+            <i class="fas fa-pause" />
           </button>
           <button
             class="mx-2 btn"
             @click="toggle"
           >
-            <i class="fas fa-cog"></i>
+            <i class="fas fa-cog" />
           </button>
           <button
             class="mx-2 btn"
             @click="clone"
           >
-            <i class="fas fa-clone"></i>
+            <i class="fas fa-clone" />
           </button>
         </div>
       </div>
