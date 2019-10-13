@@ -1,24 +1,16 @@
 <template>
   <div class="card">
-    <div id="headingOne" class="card-header" role="tab">
+    <div
+      id="headingOne"
+      v-b-toggle="`collapse-${tabId}`"
+      class="card-header"
+      role="tab"
+    >
       <h5 class="mb-0">
-        <a
-          class="text-body"
-          aria-controls="collapseOne"
-          aria-expanded="true"
-          data-toggle="collapse"
-          href="#collapseOne"
-          role="button"
-        >
-          {{ title }}</a>
+        <a class="text-body"> {{ title }}</a>
       </h5>
     </div>
-    <div
-      id="collapseOne"
-      class="collapse show"
-      aria-labelledby="headingOne"
-      role="tabpanel"
-    >
+    <b-collapse :id="`collapse-${tabId}`" visible>
       <div class="card-body">
         <ul class="list-group">
           <li
@@ -33,7 +25,7 @@
           </li>
         </ul>
       </div>
-    </div>
+    </b-collapse>
   </div>
 </template>
 
@@ -48,6 +40,10 @@ export default {
       required: true,
     },
     title: {
+      type: String,
+      required: true,
+    },
+    tabId: {
       type: String,
       required: true,
     },

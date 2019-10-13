@@ -8,14 +8,17 @@
     <TaskList
       title="実行中"
       :task-list="doingTasks"
+      tab-id="doing"
     />
     <TaskList
       title="未着手"
       :task-list="notStartedTasks"
+      tab-id="not-started"
     />
     <TaskList
       title="完了"
       :task-list="completedTasks"
+      tab-id="completed"
     />
   </div>
 </template>
