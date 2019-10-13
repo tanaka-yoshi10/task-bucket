@@ -5,127 +5,31 @@
     aria-multiselectable="true"
     role="tablist"
   >
-    <div class="card">
-      <div id="headingOne" class="card-header" role="tab">
-        <h5 class="mb-0">
-          <a
-            class="text-body"
-            aria-controls="collapseOne"
-            aria-expanded="true"
-            data-toggle="collapse"
-            href="#collapseOne"
-            role="button"
-          >
-            実行中</a>
-        </h5>
-      </div>
-      <div
-        id="collapseOne"
-        class="collapse show"
-        aria-labelledby="headingOne"
-        role="tabpanel"
-      >
-        <div class="card-body">
-          <ul class="list-group">
-            <li
-              v-for="(task, index) in doingTasks"
-              :id="'row_task_' + task.id"
-              :key="index"
-              class="list-group-item js-task-view my-2"
-            >
-              <Task
-                :task="task"
-              />
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div id="headingOne" class="card-header" role="tab">
-        <h5 class="mb-0">
-          <a
-            class="text-body"
-            aria-controls="collapseOne"
-            aria-expanded="true"
-            data-toggle="collapse"
-            href="#collapseOne"
-            role="button"
-          >
-            未着手</a>
-        </h5>
-      </div>
-      <div
-        id="collapseOne"
-        class="collapse show"
-        aria-labelledby="headingOne"
-        role="tabpanel"
-      >
-        <div class="card-body">
-          <ul class="list-group">
-            <li
-              v-for="(task, index) in notStartedTasks"
-              :id="'row_task_' + task.id"
-              :key="index"
-              class="list-group-item js-task-view my-2"
-            >
-              <Task
-                :task="task"
-              />
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div id="headingOne" class="card-header" role="tab">
-        <h5 class="mb-0">
-          <a
-            class="text-body"
-            aria-controls="collapseOne"
-            aria-expanded="true"
-            data-toggle="collapse"
-            href="#collapseOne"
-            role="button"
-          >
-            完了</a>
-        </h5>
-      </div>
-      <div
-        id="collapseOne"
-        class="collapse show"
-        aria-labelledby="headingOne"
-        role="tabpanel"
-      >
-        <div class="card-body">
-          <ul class="list-group">
-            <li
-              v-for="(task, index) in completedTasks"
-              :id="'row_task_' + task.id"
-              :key="index"
-              class="list-group-item js-task-view my-2"
-            >
-              <Task
-                :task="task"
-              />
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+    <TaskList
+      title="実行中"
+      :task-list="doingTasks"
+    />
+    <TaskList
+      title="未着手"
+      :task-list="notStartedTasks"
+    />
+    <TaskList
+      title="完了"
+      :task-list="completedTasks"
+    />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import { csrfToken } from '@rails/ujs'
-import Task from './Task.vue'
+import TaskList from './TaskList.vue'
 import { tasksPath } from '../javascripts/rails-routes'
 
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
 export default {
-  components: { Task },
+  components: { TaskList },
   data() {
     return {
       tasks: [],
@@ -134,19 +38,16 @@ export default {
   },
   computed: {
     completedTasks() {
-      const filteredStories = this.tasks.filter((task) => task.completed)
-      const orderedStories = filteredStories.sort((a, b) => b.created_at - a.created_at)
-      return orderedStories
+      const tasks = this.tasks.filter((task) => task.completed)
+      return this.orderByCreatedAt(tasks)
     },
     doingTasks() {
-      const filteredStories = this.tasks.filter((task) => { return task.start_at && !task.end_at})
-      const orderedStories = filteredStories.sort((a, b) => b.created_at - a.created_at)
-      return orderedStories
+      const tasks = this.tasks.filter((task) => task.start_at && !task.end_at)
+      return this.orderByCreatedAt(tasks)
     },
     notStartedTasks() {
-      const filteredStories = this.tasks.filter((task) => { return !task.start_at && !task.end_at })
-      const orderedStories = filteredStories.sort((a, b) => b.created_at - a.created_at)
-      return orderedStories
+      const tasks = this.tasks.filter((task) => !task.start_at && !task.end_at)
+      return this.orderByCreatedAt(tasks)
     },
   },
   mounted() {
@@ -160,6 +61,9 @@ export default {
         }
       }, (error) => {
       })
+    },
+    orderByCreatedAt(tasks) {
+      return tasks.sort((a, b) => b.created_at - a.created_at)
     },
   },
 }
