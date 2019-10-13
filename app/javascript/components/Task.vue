@@ -119,7 +119,7 @@
             {{ actual }}
           </span>
         </div>
-        <div class="my-2">
+        <div class="my-2" v-if="task.start_at && !task.end_at">
           <a
             class="mx-2 btn btn-danger"
             data-remote="true"
