@@ -9,16 +9,19 @@
       title="実行中"
       :task-list="doingTasks"
       tab-id="doing"
+      @task-updated="onTaskUpdated"
     />
     <TaskList
       title="未着手"
       :task-list="notStartedTasks"
       tab-id="not-started"
+      @task-updated="onTaskUpdated"
     />
     <TaskList
       title="完了"
       :task-list="completedTasks"
       tab-id="completed"
+      @task-updated="onTaskUpdated"
     />
   </div>
 </template>
@@ -41,7 +44,7 @@ export default {
   },
   computed: {
     completedTasks() {
-      const tasks = this.tasks.filter((task) => task.completed)
+      const tasks = this.tasks.filter((task) => task.start_at && task.end_at)
       return this.orderByCreatedAt(tasks)
     },
     doingTasks() {
@@ -67,6 +70,10 @@ export default {
     },
     orderByCreatedAt(tasks) {
       return tasks.sort((a, b) => b.created_at - a.created_at)
+    },
+    onTaskUpdated(task) {
+      const index = this.tasks.findIndex(item => item.id === task.id)
+      this.tasks.splice(index, 1, task)
     },
   },
 }

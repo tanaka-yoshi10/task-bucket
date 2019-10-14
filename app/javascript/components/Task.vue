@@ -187,17 +187,21 @@ export default {
       this.editable = !this.editable
     },
     complete(task) {
-      console.log(`complete ${completeApiV1TaskPath({ id: task.id })}`)
       axios.put(completeApiV1TaskPath({ id: task.id })).then((response) => {
-        console.log(response)
+        this.updateTask(response.data)
       }, (error) => {
       })
     },
     pause() {
       // TODO: 中断処理
+      this.$emit('task-updated', 'This is an argument')
     },
     clone() {
       // TODO: 複製処理
+      this.$emit('task-updated', 'This is an argument')
+    },
+    updateTask(task) {
+      this.$emit('task-updated', task)
     },
   },
 }

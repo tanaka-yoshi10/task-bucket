@@ -21,6 +21,7 @@
           >
             <Task
               :task="task"
+              @task-updated="onTaskUpdated"
             />
           </li>
         </ul>
@@ -46,6 +47,11 @@ export default {
     tabId: {
       type: String,
       required: true,
+    },
+  },
+  methods: {
+    onTaskUpdated(task) {
+      this.$emit('task-updated', task)
     },
   },
 }
