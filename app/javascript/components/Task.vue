@@ -135,12 +135,19 @@
             </button>
           </template>
           <template v-else-if="!task.start_at && !task.end_at" class="my-2">
-            <button
-              class="mx-2 btn btn-success"
-              @click="start(task)"
-            >
-              <i class="fas fa-play" />
-            </button>
+            <div class="btn-group">
+              <button class="btn btn-success" @click="start_from_now(task)"><i class="fas fa-play" /></button>
+              <button aria-expanded="false" aria-haspopup="true" class="btn btn-success dropdown-toggle" data-toggle="dropdown" type="button">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu">
+                <li class="dropdown-item"><a @click="start_from_just_before(task)">直前のタスクの終了時刻から開始</a></li>
+                <li class="dropdown-item"><a @click="postpone(task)">明日に延期</a></li>
+                <!--<li class="dropdown-item"><a data-remote="true" rel="nofollow" data-method="put" href="/tasks/167/start?from_just_before=true">直前のタスクの終了時刻から開始</a></li>-->
+                <!--<li class="dropdown-item"><a data-remote="true" rel="nofollow" data-method="put" href="/tasks/167/postpone">明日に延期</a></li>-->
+              </ul>
+            </div>
           </template>
           <button
             class="mx-2 btn"
@@ -164,7 +171,7 @@
 import axios from 'axios'
 import { csrfToken } from '@rails/ujs'
 import { format as formatDate, parseISO } from 'date-fns'
-import { startApiV1TaskPath, completeApiV1TaskPath } from '../javascripts/rails-routes'
+import { startApiV1TaskPath, completeApiV1TaskPath, postponeApiV1TaskPath } from '../javascripts/rails-routes'
 
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
@@ -196,8 +203,14 @@ export default {
     toggle() {
       this.editable = !this.editable
     },
-    start(task) {
+    start_from_now(task) {
       axios.put(startApiV1TaskPath({ id: task.id })).then((response) => {
+        this.updateTask(response.data)
+      }, (error) => {
+      })
+    },
+    start_from_just_before(task) {
+      axios.put(startApiV1TaskPath({ id: task.id, from_just_before: true })).then((response) => {
         this.updateTask(response.data)
       }, (error) => {
       })
@@ -215,6 +228,12 @@ export default {
     clone() {
       // TODO: 複製処理
       this.$emit('task-updated', 'This is an argument')
+    },
+    postpone() {
+      axios.put(postponeApiV1TaskPath({ id: task.id })).then((response) => {
+        this.updateTask(response.data)
+      }, (error) => {
+      })
     },
     updateTask(task) {
       this.$emit('task-updated', task)

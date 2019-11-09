@@ -33,6 +33,9 @@ Rails.application.routes.draw do
         member do
           put :start
           put :complete
+          put :clone
+          put :pause
+          put :postpone
         end
       end
     end
