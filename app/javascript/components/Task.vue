@@ -161,7 +161,7 @@ axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 export default {
   filters: {
     timeFormat(time) {
-      return formatDate(parseISO(time), 'hh:mm')
+      return formatDate(parseISO(time), 'HH:mm')
     },
   },
   props: {
