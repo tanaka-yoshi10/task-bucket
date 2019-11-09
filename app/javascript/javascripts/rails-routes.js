@@ -19,6 +19,7 @@ export function tasksPath(params) { return process('/tasks', params, []); }
 export function newTaskPath(params) { return process('/tasks/new', params, []); }
 export function editTaskPath(params) { return process('/tasks/' + params.id + '/edit', params, ['id']); }
 export function taskPath(params) { return process('/tasks/' + params.id + '', params, ['id']); }
+export function startApiV1TaskPath(params) { return process('/api/v1/tasks/' + params.id + '/start', params, ['id']); }
 export function completeApiV1TaskPath(params) { return process('/api/v1/tasks/' + params.id + '/complete', params, ['id']); }
 export function completeApiTaskPath(params) { return process('/api/tasks/' + params.id + '/complete', params, ['id']); }
 export function commentApiTaskPath(params) { return process('/api/tasks/' + params.id + '/comment', params, ['id']); }

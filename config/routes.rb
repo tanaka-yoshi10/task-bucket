@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :tasks, only: %i() do
         member do
+          put :start
           put :complete
         end
       end

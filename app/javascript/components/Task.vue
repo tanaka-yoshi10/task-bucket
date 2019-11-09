@@ -119,19 +119,29 @@
             {{ actual }}
           </span>
         </div>
-        <div v-if="task.start_at && !task.end_at" class="my-2">
-          <button
-            class="mx-2 btn btn-danger"
-            @click="complete(task)"
-          >
-            <i class="fas fa-stop" />
-          </button>
-          <button
-            class="mx-2 btn"
-            @click="pause(task)"
-          >
-            <i class="fas fa-pause" />
-          </button>
+        <div class="my-2">
+          <template v-if="task.start_at && !task.end_at" class="my-2">
+            <button
+              class="mx-2 btn btn-danger"
+              @click="complete(task)"
+            >
+              <i class="fas fa-stop" />
+            </button>
+            <button
+              class="mx-2 btn"
+              @click="pause(task)"
+            >
+              <i class="fas fa-pause" />
+            </button>
+          </template>
+          <template v-else-if="!task.start_at && !task.end_at" class="my-2">
+            <button
+              class="mx-2 btn btn-success"
+              @click="start(task)"
+            >
+              <i class="fas fa-play" />
+            </button>
+          </template>
           <button
             class="mx-2 btn"
             @click="toggle"
@@ -154,7 +164,7 @@
 import axios from 'axios'
 import { csrfToken } from '@rails/ujs'
 import { format as formatDate, parseISO } from 'date-fns'
-import { completeApiV1TaskPath } from '../javascripts/rails-routes'
+import { startApiV1TaskPath, completeApiV1TaskPath } from '../javascripts/rails-routes'
 
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 
@@ -185,6 +195,12 @@ export default {
   methods: {
     toggle() {
       this.editable = !this.editable
+    },
+    start(task) {
+      axios.put(startApiV1TaskPath({ id: task.id })).then((response) => {
+        this.updateTask(response.data)
+      }, (error) => {
+      })
     },
     complete(task) {
       axios.put(completeApiV1TaskPath({ id: task.id })).then((response) => {
