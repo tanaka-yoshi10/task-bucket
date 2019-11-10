@@ -10,18 +10,21 @@
       :task-list="doingTasks"
       tab-id="doing"
       @task-updated="onTaskUpdated"
+      @task-removed="onTaskRemoved"
     />
     <TaskList
       title="未着手"
       :task-list="notStartedTasks"
       tab-id="not-started"
       @task-updated="onTaskUpdated"
+      @task-removed="onTaskRemoved"
     />
     <TaskList
       title="完了"
       :task-list="completedTasks"
       tab-id="completed"
       @task-updated="onTaskUpdated"
+      @task-removed="onTaskRemoved"
     />
   </div>
 </template>
@@ -77,6 +80,12 @@ export default {
         this.tasks.push(task)
       } else {
         this.tasks.splice(index, 1, task)
+      }
+    },
+    onTaskRemoved(task) {
+      const index = this.tasks.findIndex(item => item.id === task.id)
+      if (index !== -1) {
+        this.tasks.splice(index, 1)
       }
     },
   },

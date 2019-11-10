@@ -219,22 +219,29 @@ export default {
       }, (error) => {
       })
     },
-    pause() {
-      // TODO: 中断処理
-      this.$emit('task-updated', 'This is an argument')
-    },
-    clone() {
-      // TODO: 複製処理
-      this.$emit('task-updated', 'This is an argument')
-    },
-    postpone() {
-      axios.put(postponeApiV1TaskPath({ id: task.id })).then((response) => {
+    pause(task) {
+      axios.put(pauseApiV1TaskPath({ id: task.id })).then((response) => {
         this.updateTask(response.data)
+      }, (error) => {
+      })
+    },
+    clone(task) {
+      axios.put(cloneApiV1TaskPath({ id: task.id })).then((response) => {
+        this.updateTask(response.data)
+      }, (error) => {
+      })
+    },
+    postpone(task) {
+      axios.put(postponeApiV1TaskPath({ id: task.id })).then((response) => {
+        this.removeTask(response.data)
       }, (error) => {
       })
     },
     updateTask(task) {
       this.$emit('task-updated', task)
+    },
+    removeTask(task) {
+      this.$emit('task-removed', task)
     },
   },
 }
