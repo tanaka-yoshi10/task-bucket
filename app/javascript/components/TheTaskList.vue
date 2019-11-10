@@ -73,7 +73,11 @@ export default {
     },
     onTaskUpdated(task) {
       const index = this.tasks.findIndex(item => item.id === task.id)
-      this.tasks.splice(index, 1, task)
+      if (index === -1) {
+        this.tasks.push(task)
+      } else {
+        this.tasks.splice(index, 1, task)
+      }
     },
   },
 }

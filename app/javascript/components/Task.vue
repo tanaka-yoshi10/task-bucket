@@ -144,8 +144,6 @@
               <ul class="dropdown-menu">
                 <li class="dropdown-item"><a @click="start_from_just_before(task)">直前のタスクの終了時刻から開始</a></li>
                 <li class="dropdown-item"><a @click="postpone(task)">明日に延期</a></li>
-                <!--<li class="dropdown-item"><a data-remote="true" rel="nofollow" data-method="put" href="/tasks/167/start?from_just_before=true">直前のタスクの終了時刻から開始</a></li>-->
-                <!--<li class="dropdown-item"><a data-remote="true" rel="nofollow" data-method="put" href="/tasks/167/postpone">明日に延期</a></li>-->
               </ul>
             </div>
           </template>
@@ -157,7 +155,7 @@
           </button>
           <button
             class="mx-2 btn"
-            @click="clone"
+            @click="clone(task)"
           >
             <i class="fas fa-clone" />
           </button>
@@ -171,7 +169,7 @@
 import axios from 'axios'
 import { csrfToken } from '@rails/ujs'
 import { format as formatDate, parseISO } from 'date-fns'
-import { startApiV1TaskPath, completeApiV1TaskPath, postponeApiV1TaskPath } from '../javascripts/rails-routes'
+import { startApiV1TaskPath, completeApiV1TaskPath, cloneApiV1TaskPath, pauseApiV1TaskPath, postponeApiV1TaskPath } from '../javascripts/rails-routes'
 
 axios.defaults.headers.common['X-CSRF-Token'] = csrfToken()
 

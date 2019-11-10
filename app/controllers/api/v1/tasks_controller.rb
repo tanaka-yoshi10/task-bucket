@@ -1,5 +1,5 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
-  before_action :set_task, only: %i[start complete]
+  before_action :set_task, only: %i[start complete pause clone postpone]
 
   def start
     if params[:from_just_before].present?
@@ -12,6 +12,17 @@ class Api::V1::TasksController < Api::V1::ApplicationController
 
   def complete
     @task.update!(end_at: Time.current)
+    render :show
+  end
+
+  def pause
+    @task.pause!
+    render :show
+  end
+
+  def clone
+    new_task = @task.clone!
+    @task = new_task
     render :show
   end
 
