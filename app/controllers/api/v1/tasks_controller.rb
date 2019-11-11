@@ -1,8 +1,33 @@
 class Api::V1::TasksController < Api::V1::ApplicationController
-  before_action :set_task, only: %i[complete]
+  before_action :set_task, only: %i[start complete pause clone postpone]
+
+  def start
+    if params[:from_just_before].present?
+      @task.update!(start_at: current_user.last_end_at)
+    else
+      @task.update!(start_at: Time.current)
+    end
+    render :show
+  end
 
   def complete
     @task.update!(end_at: Time.current)
+    render :show
+  end
+
+  def pause
+    @task.pause!
+    render :show
+  end
+
+  def clone
+    new_task = @task.clone!
+    @task = new_task
+    render :show
+  end
+
+  def postpone
+    @task.postpone!
     render :show
   end
 

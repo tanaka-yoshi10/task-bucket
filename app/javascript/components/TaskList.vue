@@ -22,6 +22,7 @@
             <Task
               :task="task"
               @task-updated="onTaskUpdated"
+              @task-removed="onTaskRemoved"
             />
           </li>
         </ul>
@@ -52,6 +53,9 @@ export default {
   methods: {
     onTaskUpdated(task) {
       this.$emit('task-updated', task)
+    },
+    onTaskRemoved(task) {
+      this.$emit('task-removed', task)
     },
   },
 }
