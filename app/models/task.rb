@@ -29,6 +29,13 @@ class Task < ApplicationRecord
     user.tasks.create!(title: title, estimate: estimate, project: project)
   end
 
+  def resume!
+    Task.transaction do
+      new_task = user.tasks.create!(title: title, estimate: estimate, project: project)
+      new_task.update!(start_at: Time.current)
+    end
+  end
+
   def pause!
     Task.transaction do
       user.tasks.create!(title: title, project: project)
