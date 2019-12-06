@@ -10,4 +10,13 @@ document.addEventListener('turbolinks:load', () => {
     disableTouchKeyboard: true,
     orientation: 'bottom auto',
   })
+
+  $('.js-monthpicker').datepicker({
+    autoclose: true,
+    format: 'yyyy-mm',
+    todayHighlight: true,
+    disableTouchKeyboard: true,
+    orientation: 'bottom auto',
+    minViewMode: 'months',
+  })
 })
