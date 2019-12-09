@@ -1,0 +1,13 @@
+- content_for :title do
+  MonthlyReport
+= form_tag monthly_reports_path, method: :get, class: 'form-horizontal' do
+  .input-group.my-3
+    = link_to '<', monthly_reports_path(date: l(@date.ago(1.month).to_date, format: :month)), class: 'btn'
+    .input-group-prepend
+      %span.input-group-text= icon('fas', 'calendar')
+    = text_field_tag :date, l(@date, format: :month), class: 'form-control js-monthpicker'
+    .input-group-append
+      = submit_tag 'go', class: 'btn btn-primary'
+    = link_to '>', monthly_reports_path(date: l(@date.since(1.month).to_date, format: :month)), class: 'btn'
+
+= render 'projects/project_list', tasks: @tasks
