@@ -17,6 +17,8 @@ default: &default
   cache_manifest: false
 
   # Extract and emit a css file
+  # NOTE: ちらつき防止のためにデフォルトのfalseから変更している
+  # SEE: https://github.com/rails/webpacker/issues/1844
   extract_css: true
 
   static_assets_extensions:
