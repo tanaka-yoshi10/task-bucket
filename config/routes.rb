@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   resources :monthly_reports, only: %i(index)
   resources :future_tasks, only: %i(index new create)
   resource :dashboard
+  namespace :pi_api, defaults: { format: :json } do # FIXME: 名前再考
+    resource :current, only: %i(show)
+  end
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :tasks, only: %i() do
