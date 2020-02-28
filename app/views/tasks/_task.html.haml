@@ -35,7 +35,7 @@
     .my-2= hbr(task.comment)
   .my-2
     - if task.start_at.blank?
-      .btn-group
+      .btn-group.dropup
         = link_to icon('fas', 'play'), start_task_path(task), method: :put, class: 'btn btn-success', remote: true
         %button.btn.btn-success.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
           %span.caret
