@@ -7,7 +7,7 @@ gem 'rails', '~> 6.0.0'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
-gem "doorkeeper", "~> 5.1"
+gem "doorkeeper", "~> 5.3"
 gem 'font-awesome-sass'
 gem 'hamlit-rails'
 gem 'jb'
