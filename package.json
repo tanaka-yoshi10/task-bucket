@@ -12,7 +12,7 @@
     "date-fns": "^2.4.1",
     "fullcalendar": "^3.10.0",
     "jquery": "^3.4.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "popper.js": "^1.15.0",
     "timepicker": "^1.11.14",
     "turbolinks": "^5.2.0",
